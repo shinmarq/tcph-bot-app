@@ -19,7 +19,7 @@ exports.prompts = {
 
 exports.choices = {
     confirm: ['Yes', 'No'],
-    start: ['Let\'s get started ℹ']
+    start: ['Let\'s start!']
 };
 
 module.exports.cards = {
