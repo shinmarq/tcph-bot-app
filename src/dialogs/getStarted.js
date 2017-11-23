@@ -12,7 +12,7 @@ module.exports = [
             var msg = card(session, consts.cards.welcome, cardName);
     
             session.send(msg);
-            builder.Prompts.choice(session, consts.prompts.introduction, consts.choices.menu, consts.styles.mr_button);
+            builder.Prompts.choice(session, consts.prompts.introduction, consts.choices.start, consts.styles.mr_button);
         // });
         
     },
