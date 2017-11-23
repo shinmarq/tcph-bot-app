@@ -43,6 +43,7 @@ bot.use({
             session.dialogData = {};
 
             /**INSERT BEGIN DIALOG HERE*/
+            session.beginDialog('/GetStarted');
         }else { next(); }
 
     }
@@ -53,6 +54,7 @@ bot.use({
 //=========================================================
 
 bot.dialog('/', dialogs.default);
+bot.dialog('/GetStarted', dialogs.getStarted);
 
 //=========================================================
 // Server Setup

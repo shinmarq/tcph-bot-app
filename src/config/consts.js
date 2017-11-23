@@ -13,7 +13,8 @@ exports.prompts = {
         '❓❓❓ 👇👇👇',
         'What was that again??? 😅',
         'Ugh.... I\'m confusing sorry. 🙄😅'
-    ]
+    ],
+    introduction: 'Hi! Welcome to Travel Expo PH'
 };
 
 exports.choices = {
@@ -24,13 +25,13 @@ module.exports.cards = {
     welcome: [
         {
             name: 'welcome',
-            title: 'ChatbotPH',
-            text: 'Base Card/Carousel Template.',
-            image: 'http://res.cloudinary.com/hobwovvya/image/upload/v1494397786/chatbot_logo_head_c5ya3g.png',
+            title: 'Travel Expo PH',
+            text: '',
+            image: 'http://res.cloudinary.com/shinmarq/image/upload/v1511414316/23467140_1621223521263411_3215131057678194625_o_dwhk7d.png',
             button: [
-                {msg:'Start', btn_title: 'Start'},
-                {msg:'Cancel', btn_title: 'Cancel'},
-                {url:'https://www.facebook.com/chatbotPH/', btn_title: 'ChatbotPH'}
+                {msg:'Menu', btn_title: 'Show Menu ℹ'},
+                // {msg:'Cancel', btn_title: 'Cancel'},
+                // {url:'https://www.facebook.com/chatbotPH/', btn_title: 'ChatbotPH'}
             ]
         }
     ]
