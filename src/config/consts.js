@@ -26,9 +26,9 @@ module.exports.cards = {
     welcome: [
         {
             name: 'welcome',
-            title: 'Travel Expo PH',
+            title: 'TravelCon Bot',
             text: '',
-            image: 'http://res.cloudinary.com/shinmarq/image/upload/v1511414316/23467140_1621223521263411_3215131057678194625_o_dwhk7d.png',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
             button: [
                 // {msg:'Menu', btn_title: 'Show Menu ℹ'},
                 // {msg:'Cancel', btn_title: 'Cancel'},
