@@ -18,7 +18,7 @@ module.exports.userProfile =
 /**FB GET STARTED BUTTON API */
 module.exports.getStarted = 
 (payload) => {
-    var option = {
+    var options = {
         url: format('https://graph.facebook.com/v2.6/me/messenger_profile?access_token={0}', process.env.ACCESS_TOKEN),
         method: 'POST',
         body: {
@@ -38,7 +38,7 @@ module.exports.getStarted =
 /**FB PERSISTENT MENU API */
 module.exports.persistentMenu = 
 (body) => {
-    var option = {
+    var options = {
         url: format('https://graph.facebook.com/v2.6/me/messenger_profile?access_token={0}', process.env.ACCESS_TOKEN),
         method: 'POST',
         body: body,
