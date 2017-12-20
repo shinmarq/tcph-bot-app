@@ -20,8 +20,7 @@ module.exports = [
         if(!results.response) {
             session.replaceDialog('/');
         } else {
-            // session.replaceDialog('/Menu');
-            session.endConversation(results.response.entity)
+            session.replaceDialog('/Menu');
         }
     }
 ]

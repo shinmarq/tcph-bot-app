@@ -55,6 +55,7 @@ bot.use({
 
 bot.dialog('/', dialogs.default);
 bot.dialog('/GetStarted', dialogs.getStarted);
+bot.dialog('/Menu', dialogs.menu);
 
 //=========================================================
 // Server Setup

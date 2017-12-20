@@ -35,6 +35,35 @@ module.exports.cards = {
                 // {url:'https://www.facebook.com/chatbotPH/', btn_title: 'ChatbotPH'}
             ]
         }
+    ],
+    main_menu: [
+        {
+            name: 'Popular Events',
+            title: 'POPULAR EVENTS',
+            text: '',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            button: [
+                {msg:'Popular_Events', btn_title: 'SHOW EVENTS'}
+            ]
+        },
+        {
+            name: 'Upcoming Events',
+            title: 'UPCOMING EVENTS',
+            text: '',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            button: [
+                {msg:'Upcoming_Events', btn_title: 'SHOW EVENTS'}
+            ]
+        },
+        {
+            name: 'Search Events',
+            title: 'SEARCH EVENTS',
+            text: '',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            button: [
+                {msg:'Search_Events', btn_title: 'SEARCH EVENTS'}
+            ]
+        }
     ]
 }
 
