@@ -79,3 +79,34 @@ module.exports.styles = {
     mr_auto: {listStyle: builder.ListStyle.auto, maxRetries: 0},
     mr_none: {listStyle: builder.ListStyle.none, maxRetries: 0}
 }
+
+module.exports.persistentMenu = {
+    persistent_menu: [
+        {
+            locale: "default",
+            // composer_input_disabled: false,
+            call_to_actions: [
+                {
+                    title: "Start Over",
+                    type: "postback",
+                    payload: "Get_Started"
+                },
+                {
+                    title: "Menu",
+                    type: "postback",
+                    payload: "Menu"
+                },
+                {
+                    title: "Powered By Werpa Rangers 🤖",
+                    type: "web_url",
+                    url: "http://www.chatbot.ph/",
+                    webview_height_ratio: "compact"
+                },
+            ]
+        },
+        {
+            locale: "zh_CN",
+            composer_input_disabled: false
+        }
+    ]
+}

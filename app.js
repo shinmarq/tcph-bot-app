@@ -3,6 +3,8 @@ const restify = require('restify');
 
 const dialogs = require('./src/dialogs');
 const consts = require('./src/config/consts');
+require('./src/helpers/apiRequest').getStarted('Get_Started');
+require('./src/helpers/apiRequest').persistentMenu(consts.persistentMenu);
 
 //=========================================================
 // Bot Setup
@@ -55,7 +57,10 @@ bot.use({
 
 bot.dialog('/', dialogs.default);
 bot.dialog('/GetStarted', dialogs.getStarted);
-bot.dialog('/Menu', dialogs.menu);
+bot.dialog('/Menu', dialogs.menu)
+.triggerAction({
+    matches: /^Menu|menu$/i
+});
 
 //=========================================================
 // Server Setup
