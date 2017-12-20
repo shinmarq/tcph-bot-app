@@ -14,7 +14,7 @@ exports.prompts = {
         'What was that again??? 😅',
         'Ugh.... I\'m confusing sorry. 🙄😅'
     ],
-    introduction: 'Hi! Welcome to Travel Expo PH'
+    introduction: 'Hi! Welcome to TravelCon 🇵🇭'
 };
 
 exports.choices = {
