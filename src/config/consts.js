@@ -87,12 +87,12 @@ module.exports.persistentMenu = {
             // composer_input_disabled: false,
             call_to_actions: [
                 {
-                    title: "Start Over",
+                    title: "Start Over 🔁",
                     type: "postback",
                     payload: "Get_Started"
                 },
                 {
-                    title: "Menu",
+                    title: "Menu ℹ",
                     type: "postback",
                     payload: "Menu"
                 },
