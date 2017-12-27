@@ -17,7 +17,7 @@ module.exports.popularEvents = [
 
         if(!results.response) {
             session.replaceDialog('/');
-        } else if(results.response.entity == choices[0]){
+        } else {
             session.replaceDialog('/Booking');
         }
     }
