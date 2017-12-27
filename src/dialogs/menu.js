@@ -3,6 +3,7 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
+const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session) => {
