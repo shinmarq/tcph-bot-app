@@ -5,7 +5,7 @@ const format = require('string-format');
 module.exports.userProfile = 
 (uid, fields, callback) => {
     var options = {
-        url: format('https://graph.facebook.com/v2.6/{0}?fields={1}&access_token={2}', uid, fields, process.env.FB_TOKEN) ,
+        url: format('https://graph.facebook.com/v2.6/{0}?fields={1}&access_token={2}', uid, fields, process.env.ACCESS_TOKEN) ,
         method: 'GET'
     }
 
