@@ -8,7 +8,7 @@ const card = require('../helpers/cardBuilder');
 module.exports = [
     (session, args, next) => {
         session.send(args);
-        builder.Prompts.choice(session, msg, ['January 1 - 4', 'February 1 - 4'], consts.styles.mr_button);
+        builder.Prompts.choice(session, 'What is your preferred date?', ['January 1 - 4', 'February 1 - 4'], consts.styles.mr_button);
     },
     (session, results) => {
         builder.Prompts.number(session, 'How many of you will join this event?');
