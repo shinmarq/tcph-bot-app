@@ -45,7 +45,7 @@ bot.use({
             session.dialogData = {};
 
             /**INSERT BEGIN DIALOG HERE*/
-            session.beginDialog('/GetStarted');
+            session.beginDialog('/Menu');
         }else { next(); }
 
     }

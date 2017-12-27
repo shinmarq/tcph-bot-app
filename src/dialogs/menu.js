@@ -6,10 +6,14 @@ const card = require('../helpers/cardBuilder');
 
 module.exports = [
     (session) => {
-        var cardName = card.getName(consts.cards.main_menu);
-        var msg = card(session, consts.cards.main_menu, cardName);
+        api.userProfile(session.message.user.id, 'first_name', (err, res) => {
+            var cardName = card.getName(consts.cards.main_menu);
+            var msg = card(session, consts.cards.main_menu, cardName);
 
-        builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+            session.send(format(consts.prompts.introduction, res.first_name));
+            session.send(consts.prompts.Menu);
+            builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+        });
     },
     (session, results) => {
         var choices = card.choices(consts.cards.main_menu);
