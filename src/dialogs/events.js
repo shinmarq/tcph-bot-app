@@ -94,6 +94,6 @@ module.exports.showInclusions = [
 
 module.exports.showAvailability = [
     (session, args) => {
-        session.endConversation('ID' + args.event_id);
+        session.endConversation('ID ' + args.event_id);
     }
 ]
