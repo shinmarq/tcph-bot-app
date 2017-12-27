@@ -14,12 +14,26 @@ module.exports.popularEvents = [
     },
     (session, results) => {
         var choices = card.choices(consts.cards.sample_event);
-        var split = choices.split(':');
-        console.log(split[0]);
+
         if(!results.response) {
             session.replaceDialog('/');
         } else {
-            session.replaceDialog('/Booking');
+            var choice = results.response.entity;
+            var split = choice.split(':');
+
+            switch(split[0]) {
+                case 'IN':
+
+                break;
+
+                case 'AV':
+                
+                break;
+                
+                default:
+                session.replaceDialog('/Booking');
+            }
+            
         }
     }
 ]
