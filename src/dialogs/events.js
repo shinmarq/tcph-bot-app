@@ -14,7 +14,8 @@ module.exports.popularEvents = [
     },
     (session, results) => {
         var choices = card.choices(consts.cards.sample_event);
-
+        var split = choice.split(':');
+        console.log(split[0]);
         if(!results.response) {
             session.replaceDialog('/');
         } else {
@@ -54,5 +55,14 @@ module.exports.searchEvents = [
         } else {
             session.replaceDialog('/Booking');
         }
+    }
+]
+
+module.exports.showInclusions = [
+    (session, args) => {
+
+    },
+    (session, results) => {
+
     }
 ]
