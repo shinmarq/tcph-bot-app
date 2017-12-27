@@ -13,7 +13,7 @@ module.exports.popularEvents = [
         builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
     },
     (session, results) => {
-        console.log(results);
+        console.log(!results.response);
         if(!results.response) {
             session.replaceDialog('/');
         } else {
