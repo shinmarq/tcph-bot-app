@@ -73,6 +73,8 @@ module.exports.cards = {
             text: '3 days and 2 nights package tour',
             image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359255/MostPopularTour-01_gxfogz.jpg',
             button: [
+                {msg: 'IN:', btn_title: 'INCLUSIONS'},
+                {msg: 'AV:', btn_title: 'AVAILABILITY'},
                 {msg:'Tagaytay_Tour', btn_title: 'BOOK NOW ✔'}
             ]
         },
@@ -82,6 +84,8 @@ module.exports.cards = {
             text: '3 days and 2 nights package tour',
             image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359282/UpcomingTours-01_fogl18.jpg',
             button: [
+                {msg: 'IN:', btn_title: 'INCLUSIONS'},
+                {msg: 'AV:', btn_title: 'AVAILABILITY'},
                 {msg:'Palawan_Tour', btn_title: 'BOOK NOW ✔'}
             ]
         }
