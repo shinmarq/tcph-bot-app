@@ -6,7 +6,7 @@ const card = require('../helpers/cardBuilder');
 // const api = require('../helpers/apiRequest');
 
 module.exports = [
-    (session, results, args) => {
+    (session, args, next) => {
         var choices =  card.choices(consts.cards.sample_event);
         console.log(args);
         if(!results.response){
