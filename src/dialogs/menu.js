@@ -17,11 +17,11 @@ module.exports = [
         if(!results.response) {
             session.replaceDialog('/')
         } else if (results.response.entity == choices[0]) {
-            session.endConversation(choices[0]);
+            session.endConversation(results.response.entity);
         } else if (results.response.entity == choices[1]) {
-            session.endConversation(choices[1]);
+            session.endConversation(results.response.entity);
         } else {
-            session.endConversation(choices[2]);
+            session.endConversation(results.response.entity);
         }
     }
 ]
