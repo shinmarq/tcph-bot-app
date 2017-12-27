@@ -7,17 +7,6 @@ const card = require('../helpers/cardBuilder');
 
 module.exports = [
     (session, args, next) => {
-        var choices =  card.choices(consts.cards.sample_event);
-        console.log(args);
-        if(!results.response){
-            session.replaceDialog('/');
-        } else if(results.resonse.entity == choices[0]) {
-
-        } else if(results.resonse.entity == choices[1]) {
-
-        }
-    },
-    (session, results) => {
         builder.Prompts.choice(session, msg, ['January 1 - 4', 'February 1 - 4'], consts.styles.mr_button);
     },
     (session, results) => {
