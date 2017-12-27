@@ -74,9 +74,12 @@ module.exports.searchEvents = [
 
 module.exports.showInclusions = [
     (session, args) => {
+        console.log('ID ' + args);
+    }
+]
 
-    },
-    (session, results) => {
-
+module.exports.showAvailability = [
+    (session, args) => {
+        console.log('ID ' + args);
     }
 ]
