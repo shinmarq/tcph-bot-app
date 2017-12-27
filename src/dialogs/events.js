@@ -27,11 +27,11 @@ module.exports.popularEvents = [
                 break;
 
                 case 'AV':
-                
+
                 break;
                 
                 default:
-                session.replaceDialog('/Booking');
+                    session.replaceDialog('/Booking');
             }
             
         }
