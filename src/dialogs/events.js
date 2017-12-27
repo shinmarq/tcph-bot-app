@@ -23,11 +23,11 @@ module.exports.popularEvents = [
 
             switch(split[0]) {
                 case 'IN':
-
+                    session.endConversation('show inclusions');
                 break;
 
                 case 'AV':
-
+                    session.endConversation('show availablity');
                 break;
                 
                 default:
