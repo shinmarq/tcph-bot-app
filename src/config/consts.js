@@ -28,7 +28,7 @@ module.exports.cards = {
             name: 'welcome',
             title: 'TravelCon Bot',
             text: '',
-            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/c_scale,h_1150,w_1871/v1513750244/Untitled-6-03_elkzdv.jpg',
             button: [
                 // {msg:'Menu', btn_title: 'Show Menu ℹ'},
                 // {msg:'Cancel', btn_title: 'Cancel'},
