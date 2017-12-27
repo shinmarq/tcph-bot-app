@@ -18,7 +18,7 @@ module.exports.popularEvents = [
         if(!results.response) {
             session.replaceDialog('/');
         } else if(results.response.entity == choices[0]){
-            session.replaceDialog('/Booking');
+            session.replaceDialog('/Booking', 'test parameter');
         }
     }
 ]
