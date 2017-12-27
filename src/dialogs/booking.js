@@ -7,7 +7,9 @@ const card = require('../helpers/cardBuilder');
 
 module.exports = [
     (session, args, next) => {
-        console.log(args);
+        if(args === undefined) {
+            next();
+        }
         builder.Prompts.choice(session, 'What is your preferred date?', ['January 1 - 4', 'February 1 - 4', 'March 1 - 4', 'April 1 - 4', 'May 1 - 4', 'June 1 - 4', 'July 1 - 4', 'August 1 - 4', 'September 1 - 4', 'October 1 - 4'], consts.styles.mr_button);
     },
     (session, results) => {
