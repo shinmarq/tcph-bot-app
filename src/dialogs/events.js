@@ -13,10 +13,11 @@ module.exports.popularEvents = [
         builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
     },
     (session, results) => {
-        console.log(!results.response);
+        var choices = card.choices(consts.cards.sample_event);
+
         if(!results.response) {
             session.replaceDialog('/');
-        } else {
+        } else if(results.response.entity == choices[0]){
             session.replaceDialog('/Booking', 'test parameter');
         }
     }
