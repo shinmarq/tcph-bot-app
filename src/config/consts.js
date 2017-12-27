@@ -64,6 +64,26 @@ module.exports.cards = {
                 {msg:'Search_Events', btn_title: 'SEARCH EVENTS'}
             ]
         }
+    ],
+    sample_event: [
+        {
+            name: 'Tagaytay',
+            title: 'Tagaytay package tour',
+            text: '3 days and 2 nights package tour',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359255/MostPopularTour-01_gxfogz.jpg',
+            button: [
+                {msg:'Tagaytay_Tour', btn_title: 'BOOK NOW ✔'}
+            ]
+        },
+        {
+            name: 'Palawan',
+            title: 'Palawan package tour',
+            text: '3 days and 2 nights package tour',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359282/UpcomingTours-01_fogl18.jpg',
+            button: [
+                {msg:'Palawan_Tour', btn_title: 'BOOK NOW ✔'}
+            ]
+        }
     ]
 }
 

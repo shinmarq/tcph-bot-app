@@ -61,6 +61,10 @@ bot.dialog('/Menu', dialogs.menu)
 .triggerAction({
     matches: /^Menu|menu$/i
 });
+bot.dialog('/Booking', dialogs.booking);
+bot.dialog('/Events/Popular', dialogs.events.popularEvents);
+bot.dialog('/Events/Upcoming', dialogs.events.upcomingEvents);
+bot.dialog('/Events/Search', dialogs.events.searchEvents);
 
 //=========================================================
 // Server Setup

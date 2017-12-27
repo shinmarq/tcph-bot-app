@@ -17,11 +17,11 @@ module.exports = [
         if(!results.response) {
             session.replaceDialog('/')
         } else if (results.response.entity == choices[0]) {
-            session.endConversation(results.response.entity);
+            session.replaceDialog('/Events/Popular');
         } else if (results.response.entity == choices[1]) {
-            session.endConversation(results.response.entity);
+            session.replaceDialog('/Events/Upcoming');
         } else {
-            session.endConversation(results.response.entity);
+            session.replaceDialog('/Events/Search');
         }
     }
 ]
