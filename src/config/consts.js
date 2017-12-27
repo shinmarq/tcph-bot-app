@@ -15,7 +15,7 @@ exports.prompts = {
         'Ugh.... I\'m confusing sorry. 🙄😅'
     ],
     introduction: 'Hi {0}! I am Champ, your travel companion! \nTogether, let\'s plan your next vacation ✈.',
-    Menu: 'Start by selecting from these options.'
+    Menu: 'Select from these awesome options.'
 };
 
 exports.choices = {
