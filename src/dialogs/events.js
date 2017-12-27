@@ -17,7 +17,7 @@ module.exports.popularEvents = [
         if(!results.response) {
             session.replaceDialog('/');
         } else {
-            session.replaceDialog('/Booking');
+            session.replaceDialog('/Booking', 'test parameter');
         }
     }
 ]
@@ -34,7 +34,7 @@ module.exports.upcomingEvents = [
         if(!results.response) {
             session.replaceDialog('/');
         } else {
-            session.replaceDialog('/Booking');
+            session.replaceDialog('/Booking', 'test parameter');
         }
     }
 ]

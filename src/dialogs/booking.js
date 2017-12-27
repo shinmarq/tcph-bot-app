@@ -6,15 +6,9 @@ const card = require('../helpers/cardBuilder');
 // const api = require('../helpers/apiRequest');
 
 module.exports = [
-    (session) => {
-        var cardName = card.getName(consts.cards.sample_event);
-        var msg = card(session, consts.cards.sample_event, cardName);
-
-        builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
-    },
-    (session, results) => {
+    (session, results, args, next) => {
         var choices =  card.choices(consts.cards.sample_event);
-
+        console.log(args);
         if(!results.response){
             session.replaceDialog('/');
         } else if(results.resonse.entity == choices[0]) {
