@@ -41,7 +41,7 @@ module.exports.cards = {
             name: 'Popular Events',
             title: 'POPULAR EVENTS',
             text: '',
-            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359255/MostPopularTour-01_gxfogz.jpg',
             button: [
                 {msg:'Popular_Events', btn_title: 'SHOW EVENTS'}
             ]
@@ -50,7 +50,7 @@ module.exports.cards = {
             name: 'Upcoming Events',
             title: 'UPCOMING EVENTS',
             text: '',
-            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359282/UpcomingTours-01_fogl18.jpg',
             button: [
                 {msg:'Upcoming_Events', btn_title: 'SHOW EVENTS'}
             ]
@@ -59,7 +59,7 @@ module.exports.cards = {
             name: 'Search Events',
             title: 'SEARCH EVENTS',
             text: '',
-            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1513750244/Untitled-6-03_elkzdv.jpg',
+            image: 'http://res.cloudinary.com/dbgg7bdhv/image/upload/v1514359304/SearchTours_2_-01_fy5ab9.jpg',
             button: [
                 {msg:'Search_Events', btn_title: 'SEARCH EVENTS'}
             ]
