@@ -23,15 +23,15 @@ module.exports.popularEvents = [
 
             switch(split[0]) {
                 case 'IN':
-                    session.replaceDialog('/', { event_id: split[1] });
+                    session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
                 break;
 
                 case 'AV':
-                    session.replaceDialog('/', { event_id: split[1] });
+                    session.replaceDialog('/Events/Availability', { event_id: split[1] });
                 break;
                 
                 default:
-                    session.replaceDialog('/Booking');
+                    session.replaceDialog('/Booking', { event_id: split[1] });
             }
             
         }
