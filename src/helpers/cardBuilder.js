@@ -131,7 +131,7 @@ module.exports.eventAvailability =
             ''
         ])
         .buttons([
-            builder.CardAction.imBack(session, format('IN:{0}', event._id), event.name)
+            builder.CardAction.imBack(session, format('IN:{0}', event._id), 'CHOOSE THIS DATE ✔')
         ]));
     });
 
