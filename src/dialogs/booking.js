@@ -9,7 +9,7 @@ module.exports = [
     (session, args, next) => {
         console.log(args.event_id);
         api.availability(args.event_id, (res) => {
-            var msg = card.availability(session, res);
+            var msg = card.eventAvailability(session, res);
 
             builder.Prompts.choice(session, msg, card.idChoices(res), consts.styles.mr_button);
         });
