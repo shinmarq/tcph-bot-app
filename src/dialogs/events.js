@@ -9,7 +9,7 @@ module.exports.popularEvents = [
     (session) => {
         api.popularEvents((res) => {
             var msg = card.events(session, res.data);
-            session.send(msg);
+            builder.Prompts.text(session, msg);
         });
         // var cardName = card.getName(consts.cards.sample_event);
         // var msg = card(session, consts.cards.sample_event, cardName);
@@ -17,7 +17,7 @@ module.exports.popularEvents = [
         // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
     },
     (session, results) => {
-
+        console.log(results);
         if(!results.response) {
             session.replaceDialog('/');
         } else {

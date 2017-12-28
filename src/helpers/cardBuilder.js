@@ -102,17 +102,4 @@ module.exports.events =
     return msg;
 }
 
-module.exports.eventChoices = 
-(event) => {
-    var choices = []
-    event.forEach((key) => {
-        key.button.forEach((key) => {
-            if(key.msg != undefined){
-                choices.push(key.msg);
-            }
-        })
-    })
-
-    return choices;
-}
 
