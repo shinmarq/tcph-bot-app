@@ -8,7 +8,7 @@ const api = require('../helpers/apiRequest');
 module.exports.popularEvents = [
     (session) => {
         api.popularEvents((res) => {
-            console.log(res);
+            card.events(res.data);
         });
         var cardName = card.getName(consts.cards.sample_event);
         var msg = card(session, consts.cards.sample_event, cardName);

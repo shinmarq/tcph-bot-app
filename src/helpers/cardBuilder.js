@@ -78,7 +78,7 @@ module.exports.choices =
 }
 
 module.exports.events = 
-(session, events) => {
+(events) => {
     events.forEach(event => {
         console.log(event)
     });
