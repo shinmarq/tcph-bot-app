@@ -120,4 +120,37 @@ module.exports.eventChoices =
     return choices;
 }
 
+module.exports.eventAvailability = 
+(session, events) => {
+    let item = [];
+    events.forEach(event => {
+        item.push(new builder.HeroCard(session)
+        .title('')
+        .text('')
+        .images([ 
+            ''
+        ])
+        .buttons([
+            builder.CardAction.imBack(session, format('IN:{0}', event._id), event.name)
+        ]));
+    });
+
+    let msg = new builder.Message(session)
+    .attachmentLayout(builder.AttachmentLayout.carousel)
+    .attachments(item);
+    
+    return msg;
+}
+
+module.exports.idChoices =
+(events) => {
+    var choices = [];
+
+    events.forEach(event => {
+        choices.push(event._id);
+    });
+
+    return choices;
+}
+
 
