@@ -55,7 +55,7 @@ module.exports.persistentMenu =
 module.exports.popularEvents = 
 (callback) => {
     var options = {
-        url: format(process.env.EVENT_URI, 'popular'),
+        url: format(process.env.EVENT_URI, '/event/popular'),
         method: 'GET',
         json: true
     }
