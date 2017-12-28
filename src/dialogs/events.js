@@ -8,12 +8,13 @@ const api = require('../helpers/apiRequest');
 module.exports.popularEvents = [
     (session) => {
         api.popularEvents((res) => {
-            card.events(res.data);
+            var msg = card.events(res.data);
+            session.send(msg);
         });
-        var cardName = card.getName(consts.cards.sample_event);
-        var msg = card(session, consts.cards.sample_event, cardName);
+        // var cardName = card.getName(consts.cards.sample_event);
+        // var msg = card(session, consts.cards.sample_event, cardName);
 
-        builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
+        // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
     },
     (session, results) => {
 

@@ -79,8 +79,40 @@ module.exports.choices =
 
 module.exports.events = 
 (events) => {
+    let item = [];
     events.forEach(event => {
         console.log(event)
+        item.push(new builder.HeroCard(session)
+        .title(event.event_title)
+        .text(event.event_description)
+        .images([ 
+            builder.CardImage.create(session, event.photo_url)
+        ])
+        .buttons([
+            builder.CardAction.imBack(session, format('IN:', event._id), 'INCLUSION'),
+            builder.CardAction.imBack(session, format('AV:', event._id), 'AVAILABILITY'),
+            builder.CardAction.imBack(session, format('BN:', event._id), 'BOOK NOW ✔')
+        ]));
     });
+
+    let msg = new builder.Message(session)
+    .attachmentLayout(builder.AttachmentLayout.carousel)
+    .attachments(item);
+    
+    return msg;
+}
+
+module.exports.eventChoices = 
+(event) => {
+    var choices = []
+    event.forEach((key) => {
+        key.button.forEach((key) => {
+            if(key.msg != undefined){
+                choices.push(key.msg);
+            }
+        })
+    })
+
+    return choices;
 }
 
