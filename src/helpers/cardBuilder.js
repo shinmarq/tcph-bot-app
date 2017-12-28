@@ -89,9 +89,9 @@ module.exports.events =
             builder.CardImage.create(session, event.photo_url)
         ])
         .buttons([
-            builder.CardAction.imBack(session, event._id, 'INCLUSION'),
-            builder.CardAction.imBack(session, event._id, 'AVAILABILITY'),
-            builder.CardAction.imBack(session, event._id, 'BOOK NOW ✔')
+            builder.CardAction.imBack(session, format('IN:{0}', event._id), 'INCLUSION'),
+            builder.CardAction.imBack(session, format('AV:{0}', event._id), 'AVAILABILITY'),
+            builder.CardAction.imBack(session, format('BN:{0}', event._id), 'BOOK NOW ✔')
         ]));
     });
 
@@ -109,11 +109,11 @@ module.exports.eventChoices =
     events.forEach(event => {
         for(i = 0; i <= 2; i++){
             if(i == 0){
-                choices.push(format('IN:', event._id));
+                choices.push(format('IN:{0}', event._id));
             } else if(i == 1){
-                choices.push(format('AV:', event._id));
+                choices.push(format('AV:{0}', event._id));
             } else {
-                choices.push(format('BN:', event._id));
+                choices.push(format('BN:{0}', event._id));
             }
         }
     });
