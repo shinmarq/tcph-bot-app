@@ -3,10 +3,13 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-// const api = require('../helpers/apiRequest');
+const api = require('../helpers/apiRequest');
 
 module.exports.popularEvents = [
     (session) => {
+        api.popularEvents((res) => {
+            console.log(res);
+        });
         var cardName = card.getName(consts.cards.sample_event);
         var msg = card(session, consts.cards.sample_event, cardName);
 

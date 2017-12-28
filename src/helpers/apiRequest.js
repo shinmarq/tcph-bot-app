@@ -50,3 +50,18 @@ module.exports.persistentMenu =
     })
 }
 /**END */
+
+/**EVENT API*/
+module.exports.popularEvents = 
+(callback) => {
+    var options = {
+        url: format(process.env.EVENT_URI, 'popular'),
+        method: 'GET',
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? callback(JSON.parse(body)) : console.log(err); 
+    })
+}
+/**END */
