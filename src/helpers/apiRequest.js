@@ -61,7 +61,7 @@ module.exports.popularEvents =
     }
 
     request(options, (err, httpRes, body) => {
-        !err ? callback(JSON.parse(body)) : console.log(err); 
+        !err ? callback(body) : console.log(err); 
     })
 }
 /**END */
