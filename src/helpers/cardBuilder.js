@@ -122,10 +122,11 @@ module.exports.eventChoices =
 
 module.exports.eventAvailability = 
 (session, events) => {
+    console.log(events)
     let item = [];
     events.forEach(event => {
         item.push(new builder.HeroCard(session)
-        .title('')
+        .title(event.name)
         .text('')
         .images([ 
             ''
