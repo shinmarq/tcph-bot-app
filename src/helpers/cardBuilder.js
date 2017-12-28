@@ -89,9 +89,9 @@ module.exports.events =
             builder.CardImage.create(session, event.photo_url)
         ])
         .buttons([
-            builder.CardAction.imBack(session, format('IN:', event._id), 'INCLUSION'),
-            builder.CardAction.imBack(session, format('AV:', event._id), 'AVAILABILITY'),
-            builder.CardAction.imBack(session, format('BN:', event._id), 'BOOK NOW ✔')
+            builder.CardAction.imBack(session, 'IN:' + event._id, 'INCLUSION'),
+            builder.CardAction.imBack(session, 'AV:' + event._id, 'AVAILABILITY'),
+            builder.CardAction.imBack(session, 'BN:' + event._id, 'BOOK NOW ✔')
         ]));
     });
 
