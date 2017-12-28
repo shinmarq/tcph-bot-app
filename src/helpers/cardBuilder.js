@@ -81,7 +81,7 @@ module.exports.events =
 (session, events) => {
     let item = [];
     events.forEach(event => {
-        console.log(event)
+        console.log(event._id)
         item.push(new builder.HeroCard(session)
         .title(event.event_title)
         .text(event.event_description)
@@ -109,11 +109,11 @@ module.exports.eventChoices =
     events.forEach(event => {
         for(i = 0; i <= 2; i++){
             if(i == 0){
-                choices.push(format('IN', event._id));
+                choices.push(format('IN:', event._id));
             } else if(i == 1){
-                choices.push(format('AV', event._id));
+                choices.push(format('AV:', event._id));
             } else {
-                choices.push(format('BN', event._id));
+                choices.push(format('BN:', event._id));
             }
         }
     });
