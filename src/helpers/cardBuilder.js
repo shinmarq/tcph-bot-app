@@ -81,7 +81,6 @@ module.exports.events =
 (session, events) => {
     let item = [];
     events.forEach(event => {
-        console.log(event._id)
         item.push(new builder.HeroCard(session)
         .title(event.event_title)
         .text(event.event_description)

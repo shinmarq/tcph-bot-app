@@ -3,11 +3,14 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-// const api = require('../helpers/apiRequest');
+const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session, args, next) => {
         console.log(args.event_id);
+        api.availability(args.event_id, (res) => {
+            console.log(res);
+        });
         builder.Prompts.choice(session, 'What is your preferred date?', ['January 1 - 4', 'February 1 - 4', 'March 1 - 4', 'April 1 - 4', 'May 1 - 4', 'June 1 - 4', 'July 1 - 4', 'August 1 - 4', 'September 1 - 4', 'October 1 - 4'], consts.styles.mr_button);
     },
     (session, results) => {

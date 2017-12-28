@@ -62,6 +62,19 @@ module.exports.popularEvents =
 
     request(options, (err, httpRes, body) => {
         !err ? callback(body) : console.log(err); 
-    })
+    });
+}
+
+module.exports.availability = 
+(id, callback) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/event/availability/' + id),
+        method: 'GET',
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? callback(body) : console.log(err); 
+    });
 }
 /**END */
