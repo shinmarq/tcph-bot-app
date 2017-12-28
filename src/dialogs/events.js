@@ -9,6 +9,7 @@ module.exports.popularEvents = [
     (session) => {
         api.popularEvents((res) => {
             var msg = card.events(session, res.data);
+            console.log(card.eventChoices(res.data));
             builder.Prompts.text(session, msg);
         });
         // var cardName = card.getName(consts.cards.sample_event);

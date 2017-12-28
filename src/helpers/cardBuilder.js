@@ -102,4 +102,23 @@ module.exports.events =
     return msg;
 }
 
+module.exports.eventChoices =
+(events) => {
+    var choices = [];
+
+    events.forEach(event => {
+        for(i = 0; i <= 2; i++){
+            if(i == 0){
+                choices.push(format('IN', event._id));
+            } else if(i == 1){
+                choices.push(format('AV', event._id));
+            } else {
+                choices.push(format('BN', event._id));
+            }
+        }
+    });
+
+    return choices;
+}
+
 
