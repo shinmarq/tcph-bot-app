@@ -7,9 +7,8 @@ const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session, args, next) => {
-        console.log(args.event_id);
         api.availability(args.event_id, (res) => {
-            var msg = card.eventAvailability(session, res);
+            var msg = card.eventAvailability(session, res.data);
 
             builder.Prompts.choice(session, msg, card.idChoices(res), consts.styles.mr_button);
         });
