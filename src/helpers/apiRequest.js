@@ -52,6 +52,19 @@ module.exports.persistentMenu =
 /**END */
 
 /**EVENT API*/
+module.exports.searchByDate = 
+(date, callback) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/event/byavailabledate?visit_date=' + date),
+        method: 'GET',
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? callback(body) : console.log(err); 
+    });
+}
+
 module.exports.popularEvents = 
 (callback) => {
     var options = {
