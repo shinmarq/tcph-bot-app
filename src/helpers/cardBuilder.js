@@ -145,13 +145,12 @@ module.exports.eventAvailability =
 module.exports.idChoices =
 (events) => {
     var choices = [];
-    console.log()
+    var data = {};
     events.forEach(event => {
-        var data = {};
         data[event.name] = event._id
         choices.push(data);
     });
-
+    console.log(data)
     return choices;
 }
 
