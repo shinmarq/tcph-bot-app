@@ -3,3 +3,4 @@ exports.getStarted = require('./getStarted');
 exports.menu = require('./menu');
 exports.booking = require('./booking');
 exports.events = require('./events');
+exports.searchEvents = require('./searchEvents');
