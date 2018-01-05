@@ -100,6 +100,7 @@ module.exports.showInclusions = [
 module.exports.showAvailability = [
     (session, args) => {
         api.availability(args.event_id, (res) => {
+            console.log(res)
             session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
         });
     }
