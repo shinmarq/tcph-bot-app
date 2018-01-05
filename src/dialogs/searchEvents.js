@@ -14,6 +14,7 @@ module.exports.byDate = [
             session.replaceDialog('/');
         } else {
             console.log(results)
+            
             api.searchByDate(results.response.resolution.start, (res) => {
                 console.log(res.data);
             });
