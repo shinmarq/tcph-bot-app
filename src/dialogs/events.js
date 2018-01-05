@@ -81,7 +81,25 @@ module.exports.searchEvents = [
         builder.Prompts.choice(session, 'Please choose your search option.', consts.choices.search_options, consts.styles.mr_button);
     },
     (session, results) => {
+        var choices = consts.choices.search_options;
 
+        switch(results.response.entity) {
+            case choices[0]:
+                builder.Prompts.time(session, "What is your desired visit date?");
+            break;
+
+            case choices[1]:
+            break;
+
+            case choices[2]:
+            break;
+
+            case choices[3]:
+            break;
+
+            default:
+                session.replaceDialog('/');
+        }
     },
     (session, results) => {
 
