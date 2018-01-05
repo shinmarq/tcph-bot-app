@@ -162,7 +162,7 @@ module.exports.availabilityDetails =
     events.forEach(event => {
         str += format('\n' + event.name + ' ' + '({0})', event.available_slots); 
     });
-    
+    console.log(str)
     return str;
 }
 
