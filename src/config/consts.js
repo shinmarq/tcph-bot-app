@@ -18,7 +18,7 @@ exports.prompts = {
     Menu: 'Select from these awesome options.'
 };
 
-exports.choices = {
+module.exports.choices = {
     confirm: ['Yes', 'No'],
     start: ['Let\'s start!'],
     search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location']

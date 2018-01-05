@@ -78,10 +78,7 @@ module.exports.upcomingEvents = [
 
 module.exports.searchEvents = [
     (session) => {
-        var cardName = card.getName(consts.cards.sample_event);
-        var msg = card(session, consts.cards.sample_event, cardName);
-
-        builder.Prompts.choice(session, 'Please choose your search option.', card.choices.search_options, consts.styles.mr_button);
+        builder.Prompts.choice(session, 'Please choose your search option.', consts.choices.search_options, consts.styles.mr_button);
     },
     (session, results) => {
 
