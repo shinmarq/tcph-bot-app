@@ -93,6 +93,7 @@ module.exports.showInclusions = [
     (session, args) => {
         // session.endConversation('ID ' + args.event_id);
         api.bookingAvailability(args.event_id, (res) => {
+            console.log(res)
             session.endConversation(format('These are inclusions on this tour: \n\n{0}', res.data.inclusions));
         });
     }
