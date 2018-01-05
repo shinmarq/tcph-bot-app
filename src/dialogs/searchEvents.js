@@ -13,8 +13,8 @@ module.exports.byDate = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            console.log(results)
-            
+            console.log(results.response.resolution.start)
+
             api.searchByDate(results.response.resolution.start, (res) => {
                 console.log(res.data);
             });
