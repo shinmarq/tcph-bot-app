@@ -86,7 +86,7 @@ module.exports.events =
             .title(event.event_title)
             .text(event.event_description)
             .images([ 
-                builder.CardImage.create(session, event.photo_url)
+                builder.CardImage.create(session, event.photo)
             ])
             .buttons([
                 builder.CardAction.imBack(session, format('IN:{0}', event._id), 'INCLUSION'),
@@ -100,7 +100,7 @@ module.exports.events =
             .title(event.event.event_title)
             .text(event.event.event_description)
             .images([ 
-                builder.CardImage.create(session, event.event.photo_url)
+                builder.CardImage.create(session, event.event.photo)
             ])
             .buttons([
                 builder.CardAction.imBack(session, format('IN:{0}', event.event._id), 'INCLUSION'),
