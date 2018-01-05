@@ -43,7 +43,7 @@ module.exports.popularEvents = [
 module.exports.upcomingEvents = [
     (session) => {
         api.upcomingEvents((res) => {
-            var msg = card.events(session, res.data);
+            var msg = card.events(session, res.data, 'upcoming');
             builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'upcoming'), consts.styles.mr_button);
         });
         // var cardName = card.getName(consts.cards.sample_event);

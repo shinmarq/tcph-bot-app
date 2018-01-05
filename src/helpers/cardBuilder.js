@@ -78,21 +78,38 @@ module.exports.choices =
 }
 
 module.exports.events = 
-(session, events) => {
+(session, events, filter) => {
     let item = [];
-    events.forEach(event => {
-        item.push(new builder.HeroCard(session)
-        .title(event.event_title)
-        .text(event.event_description)
-        .images([ 
-            builder.CardImage.create(session, event.photo_url)
-        ])
-        .buttons([
-            builder.CardAction.imBack(session, format('IN:{0}', event._id), 'INCLUSION'),
-            builder.CardAction.imBack(session, format('AV:{0}', event._id), 'AVAILABILITY'),
-            builder.CardAction.imBack(session, format('BN:{0}', event._id), 'BOOK NOW ✔')
-        ]));
-    });
+    if(filter === undefined || filter == ''){
+        events.forEach(event => {
+            item.push(new builder.HeroCard(session)
+            .title(event.event_title)
+            .text(event.event_description)
+            .images([ 
+                builder.CardImage.create(session, event.photo_url)
+            ])
+            .buttons([
+                builder.CardAction.imBack(session, format('IN:{0}', event._id), 'INCLUSION'),
+                builder.CardAction.imBack(session, format('AV:{0}', event._id), 'AVAILABILITY'),
+                builder.CardAction.imBack(session, format('BN:{0}', event._id), 'BOOK NOW ✔')
+            ]));
+        });
+    } else {
+        events.forEach(event => {
+            item.push(new builder.HeroCard(session)
+            .title(event.event.event_title)
+            .text(event.event.event_description)
+            .images([ 
+                builder.CardImage.create(session, event.event.photo_url)
+            ])
+            .buttons([
+                builder.CardAction.imBack(session, format('IN:{0}', event.event._id), 'INCLUSION'),
+                builder.CardAction.imBack(session, format('AV:{0}', event.event._id), 'AVAILABILITY'),
+                builder.CardAction.imBack(session, format('BN:{0}', event.event._id), 'BOOK NOW ✔')
+            ]));
+        });
+    }
+    
 
     let msg = new builder.Message(session)
     .attachmentLayout(builder.AttachmentLayout.carousel)
