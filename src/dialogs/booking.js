@@ -12,13 +12,14 @@ module.exports = [
             // console.log(card.idChoices(res.data));
 
             // builder.Prompts.choice(session, msg, card.idChoices(res.data), consts.styles.mr_button);
-            session.conversationData.test = card.idChoices(res.data)
+            session.conversationData.dates = card.idChoices(res.data)
             builder.Prompts.choice(session, 'What\'s your preferred date? 📅', card.idChoices(res.data), consts.styles.mr_button);
         });
         
     },
     (session, results) => {
-        console.log(session.conversationData.test);
+        var date = session.conversationData.dates[results.response.entity];
+        console.log(date);
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
     (session, results) => {
