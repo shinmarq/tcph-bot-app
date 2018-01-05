@@ -5,16 +5,16 @@ exports.PORT = 3978;
 exports.prompts = {
     default: [
         'Can you say that again? :) or try tapping buttons below 👇', 
-        'Pardon please? or tap choices below 👇', 
+        'Pardon? you can tap choices below 👇', 
         'Sorry can you say that in other way?', 
-        'Again please I didn\'t get it', 
-        'Sorry I\'m a bit slow can you say that again?', 
-        'I really didn\'t get it can you tap the button below it might help :) 👇',
+        'Apology, I didn\'t get that', 
+        'Sorry I\'m a bit slow, can you say that again?', 
+        'I didn\'t get that one, can you tap the button below it might help :) 👇',
         '❓❓❓ 👇👇👇',
         'What was that again??? 😅',
-        'Ugh.... I\'m confusing sorry. 🙄😅'
+        'Ugh.... I\'m confused sorry. 🙄😅'
     ],
-    introduction: 'Hi {0}! I am Champ, your travel companion! \nTogether, let\'s plan your next vacation ✈.',
+    introduction: 'Hi {0}! Welcome to TravelCon PH! My name is Champ, your travel companion! \nTogether, let\'s plan your next vacation ✈.',
     Menu: 'Select from these awesome options.'
 };
 
