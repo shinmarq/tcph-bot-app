@@ -148,10 +148,10 @@ module.exports.idChoices =
     var data = {};
     events.forEach(event => {
         data[event.name] = event._id
-        choices.push(data);
+        // choices.push(data);
     });
-    console.log(data)
-    return choices;
+    
+    return data;
 }
 
 
