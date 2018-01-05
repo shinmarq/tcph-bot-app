@@ -152,8 +152,10 @@ module.exports.idChoices =
         }
         // choices.push(data);
     });
-    console.log(data)
+
     return data;
 }
+
+
 
 

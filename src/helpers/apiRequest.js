@@ -65,10 +65,23 @@ module.exports.popularEvents =
     });
 }
 
-module.exports.availability = 
+module.exports.bookingAvailability = 
 (id, callback) => {
     var options = {
         url: format(process.env.EVENT_URI, '/event/availability/' + id),
+        method: 'GET',
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? callback(body) : console.log(err); 
+    });
+}
+
+module.exports.eventById = 
+(id, callback) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/event/byid/' + id),
         method: 'GET',
         json: true
     }

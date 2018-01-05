@@ -7,19 +7,19 @@ const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session, args, next) => {
-        api.availability(args.event_id, (res) => {
+        api.bookingAvailability(args.event_id, (res) => {
             // var msg = card.eventAvailability(session, res.data);
             // console.log(card.idChoices(res.data));
 
             // builder.Prompts.choice(session, msg, card.idChoices(res.data), consts.styles.mr_button);
-            session.conversationData.dates = card.idChoices(res.data)
+            session.conversationData.dates = card.idChoices(res.data) // get event day name and id
             builder.Prompts.choice(session, 'What\'s your preferred date? 📅', card.idChoices(res.data), consts.styles.mr_button);
         });
         
     },
     (session, results) => {
         var date = session.conversationData.dates[results.response.entity];
-        console.log(date);
+        console.log(date); //date.event_id
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
     (session, results) => {
