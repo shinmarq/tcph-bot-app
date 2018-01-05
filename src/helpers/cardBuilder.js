@@ -158,12 +158,11 @@ module.exports.idChoices =
 
 module.exports.availabilityDetails =
 (events) => {
-    console.log(events)
-    var str;
+    var str = '';
     events.forEach(event => {
         str += format(event.name + ' ' + '({0}) \n', event.available_slots); 
     });
-    console.log(str)
+
     return str;
 }
 
