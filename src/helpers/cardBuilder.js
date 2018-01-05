@@ -156,6 +156,16 @@ module.exports.idChoices =
     return data;
 }
 
+module.exports.availabilityDetails =
+(events) => {
+    var str = '';
+    events.forEach(event => {
+        str += format('\n' + event.name + ' ' + '({0})', event.available_slots); 
+    });
+    
+    return str;
+}
+
 
 
 

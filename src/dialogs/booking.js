@@ -7,7 +7,7 @@ const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session, args, next) => {
-        api.bookingAvailability(args.event_id, (res) => {
+        api.availability(args.event_id, (res) => {
             // var msg = card.eventAvailability(session, res.data);
             // console.log(card.idChoices(res.data));
 

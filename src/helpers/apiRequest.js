@@ -65,7 +65,7 @@ module.exports.popularEvents =
     });
 }
 
-module.exports.bookingAvailability = 
+module.exports.availability = 
 (id, callback) => {
     var options = {
         url: format(process.env.EVENT_URI, '/event/availability/' + id),

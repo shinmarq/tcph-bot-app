@@ -1,3 +1,5 @@
+import { cards } from '../config/consts';
+
 const builder = require('botbuilder');
 const format = require('string-format');
 
@@ -91,7 +93,6 @@ module.exports.searchEvents = [
 
 module.exports.showInclusions = [
     (session, args) => {
-        // session.endConversation('ID ' + args.event_id);
         api.eventById(args.event_id, (res) => {
             session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
         });
@@ -100,6 +101,8 @@ module.exports.showInclusions = [
 
 module.exports.showAvailability = [
     (session, args) => {
-        session.endConversation('ID ' + args.event_id);
+        api.availability(args.event_id, (res) => {
+            session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
+        });
     }
 ]
