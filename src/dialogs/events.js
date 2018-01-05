@@ -88,7 +88,7 @@ module.exports.searchEvents = [
         } else { 
             switch(results.response.entity) {
                 case choices[0]:
-                    
+                    session.replaceDialog('/Search/ByDate');
                 break;
     
                 case choices[1]:
