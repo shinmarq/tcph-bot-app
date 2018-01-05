@@ -14,7 +14,7 @@ module.exports = [
         });
     },
     (session, results) => {
-        console.log('test' + results);
+        console.log(results);
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
     (session, results) => {
