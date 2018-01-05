@@ -161,9 +161,9 @@ module.exports.availabilityDetails =
     var str = '';
 
     events.forEach(event => {
-        
+
         if(event.available_slots != 0) {
-            str += format(event.name + ' ' + '({0} more slots) \n\n', event.available_slots);
+            str += format(event.name + ' ' + '(*{0}* more slots) \n\n', event.available_slots);
         } else {
             str += event.name + '\n\n';
         }
