@@ -147,6 +147,9 @@ module.exports.idChoices =
     var choices = [];
 
     events.forEach(event => {
+        var data = {
+
+        }
         choices.push(event._id);
     });
 
