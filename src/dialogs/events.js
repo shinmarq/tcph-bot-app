@@ -92,6 +92,7 @@ module.exports.searchEvents = [
                 break;
     
                 case choices[1]:
+                    builder.Prompts.number(session, "How many pax?");
                 break;
     
                 case choices[2]:
@@ -104,7 +105,10 @@ module.exports.searchEvents = [
         
     },
     (session, results) => {
-        console.log(results);
+        console.log(results)
+    },
+    (session, results) => {
+
         if(!results.response) {
             session.replaceDialog('/');
         } else {
