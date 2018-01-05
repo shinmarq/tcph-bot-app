@@ -126,7 +126,7 @@ module.exports.eventAvailability =
     events.forEach(event => {
         item.push(new builder.HeroCard(session)
         .title(event.name)
-        .text('Are you available on this date?')
+        .text('Are you available on this date? 📅')
         .images([ 
             ''
         ])
