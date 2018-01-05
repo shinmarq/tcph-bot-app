@@ -88,7 +88,7 @@ module.exports.searchEvents = [
         } else { 
             switch(results.response.entity) {
                 case choices[0]:
-                    builder.Prompts.time(session, "What is your desired visit date?");
+                    
                 break;
     
                 case choices[1]:
