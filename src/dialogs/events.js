@@ -1,5 +1,3 @@
-import { cards } from '../config/consts';
-
 const builder = require('botbuilder');
 const format = require('string-format');
 
