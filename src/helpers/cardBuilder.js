@@ -102,20 +102,34 @@ module.exports.events =
 }
 
 module.exports.eventChoices =
-(events) => {
+(events, filter) => {
     var choices = [];
-
-    events.forEach(event => {
-        for(i = 0; i <= 2; i++){
-            if(i == 0){
-                choices.push(format('IN:{0}', event._id));
-            } else if(i == 1){
-                choices.push(format('AV:{0}', event._id));
-            } else {
-                choices.push(format('BN:{0}', event._id));
+    if(filter === undefined || filter == ''){
+        events.forEach(event => {
+            for(i = 0; i <= 2; i++){
+                if(i == 0){
+                    choices.push(format('IN:{0}', event._id));
+                } else if(i == 1){
+                    choices.push(format('AV:{0}', event._id));
+                } else {
+                    choices.push(format('BN:{0}', event._id));
+                }
             }
-        }
-    });
+        });
+    } else {
+        events.forEach(event => {
+            for(i = 0; i <= 2; i++){
+                if(i == 0){
+                    choices.push(format('IN:{0}', event.event._id));
+                } else if(i == 1){
+                    choices.push(format('AV:{0}', event.event._id));
+                } else {
+                    choices.push(format('BN:{0}', event.event._id));
+                }
+            }
+        });
+    }
+    
 
     return choices;
 }
