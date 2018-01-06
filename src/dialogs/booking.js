@@ -13,10 +13,9 @@ module.exports = [
         api.availability(args.event_id, (res) => {
             api.eventById(args.event_id, (res) => {
                 session.conversationData.body.client = res.data[0].client; // Get client id
-                session.conversationData.dates = card.idChoices(res.data) // get event day name and id
-                
-                builder.Prompts.choice(session, 'What\'s your preferred date? 📅', card.idChoices(res.data), consts.styles.mr_button);
             });
+            session.conversationData.dates = card.idChoices(res.data) // get event day name and id
+            builder.Prompts.choice(session, 'What\'s your preferred date? 📅', card.idChoices(res.data), consts.styles.mr_button);
         });
         
     },
