@@ -169,4 +169,18 @@ module.exports.eventById =
         !err ? callback(body) : console.log(err); 
     });
 }
+
+module.exports.createBooking = 
+(body) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/booking'),
+        method: 'POST',
+        body: body,
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? console.log(body) : console.log(err); 
+    })
+}
 /**END */
