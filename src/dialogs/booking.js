@@ -20,6 +20,7 @@ module.exports = [
     },
     (session, results) => {
         var date = session.conversationData.dates[results.response.entity];
+        session.conversationData.body = {}
         session.conversationData.body.event_date = date.event_id // Get event id
 
         builder.Prompts.number(session, 'How many of you will join this event?');
