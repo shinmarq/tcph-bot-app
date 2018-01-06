@@ -103,9 +103,9 @@ module.exports.searchEvents = [
                     session.replaceDialog('/Search/ByLocation');
                 break;
 
-                // case choices[4]:
-                //     session.replaceDialog('/Search/ByBudget');
-                // break;
+                case choices[4]:
+                    session.replaceDialog('/Search/ByBudget');
+                break;
             }
         }
         

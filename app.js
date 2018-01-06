@@ -71,6 +71,7 @@ bot.dialog('/Search/ByDate', dialogs.searchEvents.byDate);
 bot.dialog('/Search/ByPax', dialogs.searchEvents.byPax);
 bot.dialog('/Search/ByName', dialogs.searchEvents.byName);
 bot.dialog('/Search/ByLocation', dialogs.searchEvents.byLocation);
+bot.dialog('/Search/ByBudget', dialogs.searchEvents.byBudget);
 
 
 //=========================================================
