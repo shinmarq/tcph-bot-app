@@ -40,8 +40,7 @@ module.exports = [
                 firstname: res.first_name,
                 lastname: res.last_name
             } // Get lead guest dtl
-
-            console.log(session.conversationData.body);
+            
             api.createBooking(session.conversationData.body);
             session.send('Cool thanks!');
             session.endConversation('Your booking is ready but you are not yet reserved for the slots \nplease settle downpayment Amounting: P5000 \n before 24hrs to these accounts');
