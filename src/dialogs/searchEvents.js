@@ -57,7 +57,7 @@ module.exports.byPax = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByDate(results.response, (res) => {
+            api.searchByPax(results.response, (res) => {
                 if(res.data.length != 0) {
                     var msg = card.events(session, res.data, 'search');
                     builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
