@@ -7,7 +7,8 @@ const api = require('../helpers/apiRequest');
 
 module.exports = [
     (session, args, next) => {
-        // session.conversationData.body.client = args.event_id; // Get number of pax
+        session.conversationData.body = {}
+        session.conversationData.body.event = args.event_id; // Get event id
         api.availability(args.event_id, (res) => {
             // var msg = card.eventAvailability(session, res.data);
             // console.log(card.idChoices(res.data));
@@ -20,8 +21,7 @@ module.exports = [
     },
     (session, results) => {
         var date = session.conversationData.dates[results.response.entity];
-        session.conversationData.body = {}
-        session.conversationData.body.event_date = date.event_id // Get event id
+        session.conversationData.body.event_schedule = date.event_id // Get event schedule id
 
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
