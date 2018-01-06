@@ -68,6 +68,7 @@ bot.dialog('/Events/Search', dialogs.events.searchEvents);
 bot.dialog('/Events/Inclusions', dialogs.events.showInclusions);
 bot.dialog('/Events/Availability', dialogs.events.showAvailability);
 bot.dialog('/Search/ByDate', dialogs.searchEvents.byDate);
+bot.dialog('/Search/ByName', dialogs.searchEvents.byPax);
 bot.dialog('/Search/ByName', dialogs.searchEvents.byName);
 
 

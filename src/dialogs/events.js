@@ -92,7 +92,7 @@ module.exports.searchEvents = [
                 break;
     
                 case choices[1]:
-                    builder.Prompts.number(session, "How many pax?");
+                    session.replaceDialog('/Search/ByPax');
                 break;
     
                 case choices[2]:
