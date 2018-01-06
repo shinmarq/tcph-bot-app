@@ -35,7 +35,7 @@ module.exports = [
         session.conversationData.body.contact_number = results.response; // Get contact number
         session.conversationData.body.fb_id = session.message.user.id; // Get fb id
 
-        api.userProfile(session.message.user.id, 'first_name last_name', (err, res) => {
+        api.userProfile(session.message.user.id, 'first_name,last_name', (err, res) => {
             session.conversationData.body.lead_guest = {
                 firstname: res.first_name,
                 lastname: res.last_name
