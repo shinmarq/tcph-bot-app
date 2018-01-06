@@ -96,6 +96,7 @@ module.exports.searchEvents = [
                 break;
     
                 case choices[2]:
+                    session.replaceDialog('/Search/ByName');
                 break;
     
                 case choices[3]:
