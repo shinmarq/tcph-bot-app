@@ -20,6 +20,29 @@ module.exports.byDate = [
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             });
         }
+    },
+    (session, results) => {
+
+        if(!results.response) {
+            session.replaceDialog('/');
+        } else {
+            var choice = results.response.entity;
+            var split = choice.split(':');
+
+            switch(split[0]) {
+                case 'IN':
+                    session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
+                break;
+
+                case 'AV':
+                    session.replaceDialog('/Events/Availability', { event_id: split[1] });
+                break;
+                
+                default:
+                    session.replaceDialog('/Booking', { event_id: split[1] });
+            }
+            
+        }
     }
 ]
 
