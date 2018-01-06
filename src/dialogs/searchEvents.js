@@ -13,8 +13,9 @@ module.exports.byDate = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
+            console.log(results.response.resolution.start)
             api.searchByDate(results.response.resolution.start, (res) => {
-                if(res.data != [] || res.data !== undefined) {
+                if(res.data.length == 0) {
                     var msg = card.events(session, res.data, 'search');
                     builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
                 } else {
