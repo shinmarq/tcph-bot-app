@@ -69,7 +69,7 @@ bot.dialog('/Events/Inclusions', dialogs.events.showInclusions);
 bot.dialog('/Events/Availability', dialogs.events.showAvailability);
 bot.dialog('/Search/ByDate', dialogs.searchEvents.byDate);
 bot.dialog('/Search/ByName', dialogs.searchEvents.byPax);
-bot.dialog('/Search/ByName', dialogs.searchEvents.byName);
+bot.dialog('/Search/ByPax', dialogs.searchEvents.byName);
 
 
 //=========================================================
