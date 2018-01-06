@@ -145,8 +145,8 @@ module.exports.byLocation = [
             api.searchByLocation(results.response, (res) => {
                 console.log(res)
                 if(res.data.length != 0) {
-                    var msg = card.events(session, res.data, 'search');
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+                    var msg = card.events(session, res.data);
+                    builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
                 } else {
                     session.endConversation('Sorry, there\'s no available event. ☹');
                 } 
