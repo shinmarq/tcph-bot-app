@@ -84,7 +84,7 @@ module.exports.events =
         events.forEach(event => {
             item.push(new builder.HeroCard(session)
             .title(event.event_title)
-            .text(event.event_description)
+            .text(event.description)
             .images([ 
                 builder.CardImage.create(session, event.photo)
             ])
