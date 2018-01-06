@@ -94,7 +94,7 @@ module.exports.searchByPax =
 module.exports.searchByLocation = 
 (loc, callback) => {
     var options = {
-        url: format(process.env.EVENT_URI, '/event/location?location=' + loc),
+        url: format(process.env.EVENT_URI, '/event/bylocation?location=' + loc),
         method: 'GET',
         json: true
     }
