@@ -13,7 +13,6 @@ module.exports.byDate = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            console.log(results.response.resolution.start)
             api.searchByDate(results.response.resolution.start, (res) => {
                 console.log(res.data.length)
                 if(res.data.length != 0) {
@@ -52,10 +51,44 @@ module.exports.byDate = [
 
 module.exports.byPax = [
     (session, args) => {
-
+        builder.Prompts.number(session, "For how many guest are you looking for?");
     }, 
     (session, results) => {
+        if(!results.response){
+            session.replaceDialog('/');
+        } else {
+            api.searchByDate(results.response, (res) => {
+                if(res.data.length != 0) {
+                    var msg = card.events(session, res.data, 'search');
+                    builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+                } else {
+                    session.endConversation('Sorry, there\'s no available event. ☹');
+                } 
+            });
+        }
+    },
+    (session, results) => {
 
+        if(!results.response) {
+            session.replaceDialog('/');
+        } else {
+            var choice = results.response.entity;
+            var split = choice.split(':');
+
+            switch(split[0]) {
+                case 'IN':
+                    session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
+                break;
+
+                case 'AV':
+                    session.replaceDialog('/Events/Availability', { event_id: split[1] });
+                break;
+                
+                default:
+                    session.replaceDialog('/Booking', { event_id: split[1] });
+            }
+            
+        }
     }
 ]
 

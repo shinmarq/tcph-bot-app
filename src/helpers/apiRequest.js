@@ -78,6 +78,19 @@ module.exports.searchByName =
     });
 }
 
+module.exports.searchByPax = 
+(pax, callback) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/event/bynumberofguest?number_of_guest=' + pax),
+        method: 'GET',
+        json: true
+    }
+
+    request(options, (err, httpRes, body) => {
+        !err ? callback(body) : console.log(err); 
+    });
+}
+
 module.exports.popularEvents = 
 (callback) => {
     var options = {
