@@ -14,8 +14,12 @@ module.exports.byDate = [
             session.replaceDialog('/');
         } else {
             api.searchByDate(results.response.resolution.start, (res) => {
-                var msg = card.events(session, res.data, 'search');
-                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+                if(res.data != [] || res.data !== undefined) {
+                    var msg = card.events(session, res.data, 'search');
+                    builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+                } else {
+                    session.endConversation('Sorry, there\'s no available event. ☹');
+                } 
             });
         }
     },
