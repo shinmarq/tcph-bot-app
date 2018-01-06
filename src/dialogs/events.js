@@ -100,6 +100,7 @@ module.exports.searchEvents = [
                 break;
     
                 case choices[3]:
+                    session.replaceDialog('/Search/ByLocation');
                 break;
             }
         }
