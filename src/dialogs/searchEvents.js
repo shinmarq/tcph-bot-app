@@ -16,7 +16,8 @@ module.exports.byDate = [
             console.log(results.response.resolution.start)
 
             api.searchByDate(results.response.resolution.start, (res) => {
-                console.log(res.data);
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             });
         }
     }
