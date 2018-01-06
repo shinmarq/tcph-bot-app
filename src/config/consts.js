@@ -21,7 +21,7 @@ exports.prompts = {
 module.exports.choices = {
     confirm: ['Yes', 'No'],
     start: ['Let\'s start!'],
-    search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location']
+    search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location', '🔎 By Budget']
 };
 
 module.exports.cards = {

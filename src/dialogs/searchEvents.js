@@ -180,9 +180,44 @@ module.exports.byLocation = [
 
 module.exports.byBudget = [
     (session, args) => {
-
+        builder.Prompts.number(session, "How much is your preferred budget? <br/><br/>eg. (500, 1000, 3000 etc...)");
     }, 
     (session, results) => {
+        if(!results.response){
+            session.replaceDialog('/');
+        } else {
+            api.searchByBudget(results.response, (res) => {
+                console.log(res)
+                if(res.data.length != 0) {
+                    var msg = card.events(session, res.data);
+                    builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
+                } else {
+                    session.endConversation('Sorry, there\'s no available event. ☹');
+                } 
+            });
+        }
+    },
+    (session, results) => {
 
+        if(!results.response) {
+            session.replaceDialog('/');
+        } else {
+            var choice = results.response.entity;
+            var split = choice.split(':');
+
+            switch(split[0]) {
+                case 'IN':
+                    session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
+                break;
+
+                case 'AV':
+                    session.replaceDialog('/Events/Availability', { event_id: split[1] });
+                break;
+                
+                default:
+                    session.replaceDialog('/Booking', { event_id: split[1] });
+            }
+            
+        }
     }
 ]
