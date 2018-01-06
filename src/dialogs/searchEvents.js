@@ -61,7 +61,7 @@ module.exports.byPax = [
 
 module.exports.byName = [
     (session, args) => {
-        builder.Prompts.time(session, "What is your desired visit date?");
+        builder.Prompts.text(session, "Type the name of the event you want to search.");
     }, 
     (session, results) => {
         if(!results.response){
