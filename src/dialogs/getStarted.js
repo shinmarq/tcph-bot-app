@@ -16,13 +16,14 @@ module.exports = [
         //     builder.Prompts.choice(session, format(consts.prompts.introduction, res.first_name), consts.choices.start, consts.styles.mr_button);
         // });
         console.log("start here");
-        api.userProfile(session.message.user.id, 'first_name')
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        });
+        session.send('dasdsad');
+        // api.userProfile(session.message.user.id, 'first_name')
+        // .then(res => {
+        //     console.log(res)
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // });
         
     },
     (session, results) => {
