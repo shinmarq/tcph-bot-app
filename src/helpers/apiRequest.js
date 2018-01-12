@@ -1,17 +1,24 @@
-const request = require('request');
+const request = require('axios');
 const format = require('string-format');
 
 /**FB USER-PROFILE API */
 module.exports.userProfile = 
-(uid, fields, callback) => {
+async (uid, fields) => {
     var options = {
         url: format('https://graph.facebook.com/v2.6/{0}?fields={1}&access_token={2}', uid, fields, process.env.ACCESS_TOKEN) ,
         method: 'GET'
     }
 
-    request(options, (err, httpRes, body) => {
-        !err ? callback(null, JSON.parse(body)) : callback(err, body); 
-    })
+    return new Promise((resolve, reject) => {
+        request(options)
+        .then(res => {
+            resolve(res);
+        })
+        .catch(err => {
+            console.log(err);
+            reject(err);
+        });
+    });
 }
 /**END */
 
