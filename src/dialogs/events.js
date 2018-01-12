@@ -3,20 +3,10 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-// const api = require('../helpers/apiRequest');
 const event = require('../helpers/event-helper');
 
 module.exports.popularEvents = [
     async(session) => {
-        // api.popularEvents((res) => {
-        //     console.log(res)
-        //     var msg = card.events(session, res.data);
-        //     builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-        // });
-        // var cardName = card.getName(consts.cards.sample_event);
-        // var msg = card(session, consts.cards.sample_event, cardName);
-
-        // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
         const res = await event.popularEvents();
 
         var msg = card.events(session, res.data);
@@ -48,11 +38,6 @@ module.exports.popularEvents = [
 
 module.exports.upcomingEvents = [
     async(session) => {
-        // api.upcomingEvents((res) => {
-        //     var msg = card.events(session, res.data, 'upcoming');
-        //     builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'upcoming'), consts.styles.mr_button);
-        // });
-        
         const res = await event.upcomingEvents();
         var msg = card.events(session, res.data, 'upcoming');
         
@@ -147,10 +132,6 @@ module.exports.searchEvents = [
 
 module.exports.showInclusions = [
     async(session, args) => {
-        // api.eventById(args.event_id, (res) => {
-        //     session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
-        // });
-
         const res = await event.eventById(args.event_id);
         session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
     }
@@ -158,10 +139,6 @@ module.exports.showInclusions = [
 
 module.exports.showAvailability = [
     async(session, args) => {
-        // api.availability(args.event_id, (res) => {
-        //     session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
-        // });
-
         const res = await event.availability(args.event_id);
         session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
     }

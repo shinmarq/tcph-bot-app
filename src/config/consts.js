@@ -1,4 +1,5 @@
 const builder = require('botbuilder');
+const dialogs = require('../dialogs');
 
 exports.PORT = 3978;
 
@@ -136,3 +137,64 @@ module.exports.persistentMenu = {
         }
     ]
 }
+
+module.exports.bot = [
+    {
+        dialog_id: '/', //Root Dialog
+        dialog: dialogs.default,
+        // trigger_action: /^test|TEST$/i
+    },
+    {
+        dialog_id: '/GetStarted',
+        dialog: dialogs.getStarted,
+    },
+    {
+        dialog_id: '/Menu',
+        dialog: dialogs.menu,
+        trigger_action: /^Menu|menu$/i
+    },
+    {
+        dialog_id: '/Booking', 
+        dialog: dialogs.booking
+    },
+    {
+        dialog_id: '/Events/Popular',
+        dialog: dialogs.events.popularEvents
+    },
+    {
+        dialog_id: '/Events/Upcoming',
+        dialog: dialogs.events.upcomingEvents
+    },
+    {
+        dialog_id: '/Events/Search',
+        dialog: dialogs.events.searchEvents
+    },
+    {
+        dialog_id: '/Events/Inclusions',
+        dialog: dialogs.events.showInclusions
+    },
+    {
+        dialog_id: '/Events/Availability',
+        dialog: dialogs.events.showAvailability
+    },
+    {
+        dialog_id: '/Search/ByDate',
+        dialog: dialogs.searchEvents.byDate
+    },
+    {
+        dialog_id: '/Search/ByPax',
+        dialog: dialogs.searchEvents.byPax
+    },
+    {
+        dialog_id: '/Search/ByName',
+        dialog: dialogs.searchEvents.byName
+    },
+    {
+        dialog_id: '/Search/ByLocation',
+        dialog: dialogs.searchEvents.byLocation
+    },
+    {
+        dialog_id: '/Search/ByBudget',
+        dialog: dialogs.searchEvents.byBudget
+    },
+]

@@ -14,14 +14,6 @@ module.exports.byDate = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            // api.searchByDate(results.response.resolution.start, (res) => {
-            //     if(res.data.length != 0) {
-            //         var msg = card.events(session, res.data, 'search');
-            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
-            //     } else {
-            //         session.endConversation('Sorry, there\'s no available event. ☹');
-            //     } 
-            // });
             const res = await event.searchByDate(results.response.resolution.start);
 
             if(res.data.length != 0) {
@@ -65,14 +57,6 @@ module.exports.byPax = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            // api.searchByPax(results.response, (res) => {
-            //     if(res.data.length != 0) {
-            //         var msg = card.events(session, res.data, 'search');
-            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
-            //     } else {
-            //         session.endConversation('Sorry, there\'s no available event. ☹');
-            //     } 
-            // });
             const res = await event.searchByPax(results.response);
 
             if(res.data.length != 0) {
@@ -116,14 +100,6 @@ module.exports.byName = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            // api.searchByName(results.response, (res) => {
-            //     if(res.data.length != 0) {
-            //         var msg = card.events(session, res.data);
-            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-            //     } else {
-            //         session.endConversation('Sorry, there\'s no available event. ☹');
-            //     } 
-            // });
             const res = await event.searchByName(results.response);
 
             if(res.data.length != 0) {
@@ -167,15 +143,6 @@ module.exports.byLocation = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            // api.searchByLocation(results.response, (res) => {
-            //     console.log(res)
-            //     if(res.data.length != 0) {
-            //         var msg = card.events(session, res.data);
-            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-            //     } else {
-            //         session.endConversation('Sorry, there\'s no available event. ☹');
-            //     } 
-            // });
             const res = await event.searchByLocation(results.response);
 
             if(res.data.length != 0) {
@@ -219,15 +186,6 @@ module.exports.byBudget = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            // api.searchByBudget(results.response, (res) => {
-            //     console.log(res)
-            //     if(res.data.length != 0) {
-            //         var msg = card.events(session, res.data);
-            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-            //     } else {
-            //         session.endConversation('Sorry, there\'s no available event. ☹');
-            //     } 
-            // });
             const res = await event.searchByBudget(results.response);
 
             if(res.data.length != 0) {

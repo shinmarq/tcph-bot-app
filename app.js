@@ -1,10 +1,10 @@
 const builder = require('botbuilder');
 const restify = require('restify');
 
-const dialogs = require('./src/dialogs');
+const routes = require('./src/routes/dialogRoutes');
 const consts = require('./src/config/consts');
-// require('./src/helpers/apiRequest').getStarted('Get_Started');
-// require('./src/helpers/apiRequest').persistentMenu(consts.persistentMenu);
+// require('./src/helpers/fb-helper').getStarted('Get_Started');
+// require('./src/helpers/fb-helper').persistentMenu(consts.persistentMenu);
 
 //=========================================================
 // Bot Setup
@@ -55,24 +55,7 @@ bot.use({
 // Bot's Dialogs
 //=========================================================
 
-bot.dialog('/', dialogs.default);
-bot.dialog('/GetStarted', dialogs.getStarted);
-bot.dialog('/Menu', dialogs.menu)
-.triggerAction({
-    matches: /^Menu|menu$/i
-});
-bot.dialog('/Booking', dialogs.booking);
-bot.dialog('/Events/Popular', dialogs.events.popularEvents);
-bot.dialog('/Events/Upcoming', dialogs.events.upcomingEvents);
-bot.dialog('/Events/Search', dialogs.events.searchEvents);
-bot.dialog('/Events/Inclusions', dialogs.events.showInclusions);
-bot.dialog('/Events/Availability', dialogs.events.showAvailability);
-bot.dialog('/Search/ByDate', dialogs.searchEvents.byDate);
-bot.dialog('/Search/ByPax', dialogs.searchEvents.byPax);
-bot.dialog('/Search/ByName', dialogs.searchEvents.byName);
-bot.dialog('/Search/ByLocation', dialogs.searchEvents.byLocation);
-bot.dialog('/Search/ByBudget', dialogs.searchEvents.byBudget);
-
+routes(bot, consts.bot);
 
 //=========================================================
 // Server Setup

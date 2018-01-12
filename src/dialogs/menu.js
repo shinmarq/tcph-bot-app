@@ -3,19 +3,11 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-const api = require('../helpers/apiRequest');
+const fb = require('../helpers/fb-helper');
 
 module.exports = [
     async(session) => {
-        // api.userProfile(session.message.user.id, 'first_name', (err, res) => {
-        //     var cardName = card.getName(consts.cards.main_menu);
-        //     var msg = card(session, consts.cards.main_menu, cardName);
-
-        //     session.send(format(consts.prompts.introduction, res.first_name));
-        //     session.send(consts.prompts.Menu);
-        //     builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
-        // });
-        const res = await api.userProfile(session.message.user.id, 'first_name');
+        const res = await fb.userProfile(session.message.user.id, 'first_name');
 
         var cardName = card.getName(consts.cards.main_menu);
         var msg = card(session, consts.cards.main_menu, cardName);
