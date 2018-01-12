@@ -29,7 +29,7 @@ module.exports = [
         session.send('Alright got it!');
         builder.Prompts.number(session, 'Please enter your contact number');
     },
-    (session, results) => {
+    async(session, results) => {
         const res = await fb.userProfile(session.message.user.id, 'first_name,last_name');
 
         session.conversationData.body.contact_number = results.response; // Get contact number
