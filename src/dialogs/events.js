@@ -3,19 +3,24 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-const api = require('../helpers/apiRequest');
+// const api = require('../helpers/apiRequest');
+const event = require('../helpers/event-helper');
 
 module.exports.popularEvents = [
-    (session) => {
-        api.popularEvents((res) => {
-            console.log(res)
-            var msg = card.events(session, res.data);
-            builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-        });
+    async(session) => {
+        // api.popularEvents((res) => {
+        //     console.log(res)
+        //     var msg = card.events(session, res.data);
+        //     builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
+        // });
         // var cardName = card.getName(consts.cards.sample_event);
         // var msg = card(session, consts.cards.sample_event, cardName);
 
         // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
+        const res = await event.popularEvents();
+        console.log(res)
+        var msg = card.events(session, res.data);
+        builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
     },
     (session, results) => {
         if(!results.response) {

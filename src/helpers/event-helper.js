@@ -12,7 +12,7 @@ async(date) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -31,7 +31,7 @@ async(name) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -50,7 +50,7 @@ async(pax) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -69,7 +69,7 @@ async(loc) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -88,7 +88,7 @@ async(budget) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -107,7 +107,7 @@ async() => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -126,7 +126,7 @@ async() => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -146,7 +146,7 @@ async(id) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -165,7 +165,7 @@ async(id) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -185,7 +185,7 @@ async(body) => {
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            resolve(res);
+            resolve(res.data);
         })
         .catch(err => {
             console.log(err);
