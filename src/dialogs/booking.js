@@ -30,18 +30,19 @@ module.exports = [
         builder.Prompts.number(session, 'Please enter your contact number');
     },
     async(session, results) => {
-        const res = await fb.userProfile(session.message.user.id, 'first_name,last_name');
+        const res1 = await fb.userProfile(session.message.user.id, 'first_name,last_name');
+        const res2 = await event.eventById(session.conversationData.body.event);
 
         session.conversationData.body.contact_number = results.response; // Get contact number
         session.conversationData.body.fb_id = session.message.user.id; // Get fb id
         session.conversationData.body.lead_guest = {
-            firstname: res.first_name,
-            lastname: res.last_name
+            firstname: res1.first_name,
+            lastname: res1.last_name
         } // Get lead guest dtl
 
-        console.log(session.conversationData.body);
+        console.log(res2);
 
-        session.send('Here\'s the summary of your booking details. <br/>');
+        session.send('Here\'s the summary of your booking details. <br/><br/> `${}`\n`${}`\n`${}`\n');
         builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
     },
     async(session, results) => {
