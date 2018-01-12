@@ -12,7 +12,6 @@ module.exports.userProfile =
     return new Promise((resolve, reject) => {
         request(options)
         .then(res => {
-            console.log(res)
             resolve(res.data);
         })
         .catch(err => {
