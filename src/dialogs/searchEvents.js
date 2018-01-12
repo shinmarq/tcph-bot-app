@@ -112,7 +112,7 @@ module.exports.byName = [
     (session, args) => {
         builder.Prompts.text(session, "Type the name of the event you want to search. <br/><br/>eg. (Tagaytay escapade, bora package tour etc...)");
     }, 
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
