@@ -215,7 +215,7 @@ module.exports.byBudget = [
     (session, args) => {
         builder.Prompts.number(session, "How much is your preferred budget? <br/><br/>eg. (500, 1000, 3000 etc...)");
     }, 
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
@@ -228,7 +228,7 @@ module.exports.byBudget = [
             //         session.endConversation('Sorry, there\'s no available event. ☹');
             //     } 
             // });
-            const res = await event.searchByLocation(results.response);
+            const res = await event.searchByBudget(results.response);
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
