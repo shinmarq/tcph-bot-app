@@ -44,7 +44,7 @@ module.exports = [
         session.send('Here\'s the summary of your booking details. <br/>');
         builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
     },
-    async(session, results) => {
+    (session, results) => {
         var choices = consts.choices.terms;
 
         if(!results){
