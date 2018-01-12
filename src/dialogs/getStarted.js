@@ -16,7 +16,7 @@ module.exports = [
         //     builder.Prompts.choice(session, format(consts.prompts.introduction, res.first_name), consts.choices.start, consts.styles.mr_button);
         // });
 
-        const res = api.userProfile(session.message.user.id, 'first_name');
+        const res = await api.userProfile(session.message.user.id, 'first_name');
 
         session.send(format(consts.prompts.introduction, res.first_name));
         builder.Prompts.choice(session, format(consts.prompts.introduction, res.first_name), consts.choices.start, consts.styles.mr_button);
