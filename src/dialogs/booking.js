@@ -10,7 +10,7 @@ module.exports = [
     async(session, args, next) => {
         const res1 = await event.availability(args.event_id);
         const res2 = await event.eventById(args.event_id);
-                 
+        console.log(res2.data[0].client)
         session.conversationData.body = {}
         session.conversationData.body.event = args.event_id; // Get event id
         session.conversationData.body.client = res2.data[0].client; // Get client id
