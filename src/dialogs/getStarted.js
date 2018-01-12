@@ -6,7 +6,7 @@ const card = require('../helpers/cardBuilder');
 const api = require('../helpers/apiRequest');
 
 module.exports = [
-    async(session) => {
+    (session) => {
         // api.userProfile(session.message.user.id, 'first_name', (err, res) => {
         //     // var cardName = card.getName(consts.cards.welcome);
         //     // var msg = card(session, consts.cards.welcome, cardName);
