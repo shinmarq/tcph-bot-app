@@ -1,7 +1,7 @@
 const builder = require('botbuilder');
 
 const consts = require('../config/consts')
-const api = require('../helpers/apiRequest')
+const fb = require('../helpers/fb-helper')
 
 module.exports = [
     (session) => {
