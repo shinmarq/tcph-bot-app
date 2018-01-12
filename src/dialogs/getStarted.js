@@ -3,7 +3,7 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-const api = require('../helpers/apiRequest');
+const fb = require('../helpers/fb-helper');
 
 module.exports = [
     (session) => {
@@ -15,13 +15,13 @@ module.exports = [
         //     session.send(format(consts.prompts.introduction, res.first_name));
         //     builder.Prompts.choice(session, format(consts.prompts.introduction, res.first_name), consts.choices.start, consts.styles.mr_button);
         // });
-        api.userProfile(session.message.user.id, 'first_name')
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        });
+        // fb.userProfile(session.message.user.id, 'first_name')
+        // .then(res => {
+        //     console.log(res)
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // });
         
     },
     (session, results) => {
