@@ -3,7 +3,7 @@ const format = require('string-format');
 
 /**FB USER-PROFILE API */
 module.exports.userProfile = 
-(uid, fields) => {
+async(uid, fields) => {
     var options = {
         url: format('https://graph.facebook.com/v2.6/{0}?fields={1}&access_token={2}', uid, fields, process.env.ACCESS_TOKEN),
         method: 'GET'

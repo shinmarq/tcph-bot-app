@@ -6,15 +6,17 @@ const card = require('../helpers/cardBuilder');
 const api = require('../helpers/apiRequest');
 
 module.exports = [
-    (session) => {
-        api.userProfile(session.message.user.id, 'first_name', (err, res) => {
-            var cardName = card.getName(consts.cards.main_menu);
-            var msg = card(session, consts.cards.main_menu, cardName);
+    async(session) => {
+        // api.userProfile(session.message.user.id, 'first_name', (err, res) => {
+        //     var cardName = card.getName(consts.cards.main_menu);
+        //     var msg = card(session, consts.cards.main_menu, cardName);
 
-            session.send(format(consts.prompts.introduction, res.first_name));
-            session.send(consts.prompts.Menu);
-            builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
-        });
+        //     session.send(format(consts.prompts.introduction, res.first_name));
+        //     session.send(consts.prompts.Menu);
+        //     builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+        // });
+        const results = await api.userProfile(session.message.user.id, 'first_name');
+        console.log(results);
     },
     (session, results) => {
         var choices = card.choices(consts.cards.main_menu);
