@@ -56,10 +56,8 @@ module.exports = [
             session.replaceDialog('/')
         } else if(results.response.entity == choices[0]) {
             const res = await event.createBooking(session.conversationData.body);
-
-            session.endConversation(`You are now successfully booked for ${res.number_of_pax} for this package. this is
-            your booking reference no. ${res.booking_refno}
-            However, this slot is not yet reserved to you until you settle required down payment amounting ${res.number_of_pax * res.total_dp} 
+            console.log(res)
+            session.endConversation(`You are now successfully booked for ${res.number_of_pax} for this package. this is your booking reference no. ${res.booking_refno} However, this slot is not yet reserved to you until you settle required down payment amounting ${res.number_of_pax * res.total_dp} 
             <br/>BDO\ntest\n12345
             <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired.
             See you soon buddy 🙂
