@@ -8,6 +8,7 @@ const api = require('../helpers/apiRequest');
 module.exports.popularEvents = [
     (session) => {
         api.popularEvents((res) => {
+            console.log(res)
             var msg = card.events(session, res.data);
             builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
         });
