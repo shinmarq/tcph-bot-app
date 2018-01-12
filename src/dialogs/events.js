@@ -47,15 +47,16 @@ module.exports.popularEvents = [
 ]
 
 module.exports.upcomingEvents = [
-    (session) => {
-        api.upcomingEvents((res) => {
-            var msg = card.events(session, res.data, 'upcoming');
-            builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'upcoming'), consts.styles.mr_button);
-        });
-        // var cardName = card.getName(consts.cards.sample_event);
-        // var msg = card(session, consts.cards.sample_event, cardName);
-
-        // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button); 
+    async(session) => {
+        // api.upcomingEvents((res) => {
+        //     var msg = card.events(session, res.data, 'upcoming');
+        //     builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'upcoming'), consts.styles.mr_button);
+        // });
+        
+        const res = await event.upcomingEvents();
+        var msg = card.events(session, res.data, 'upcoming');
+        
+        builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'upcoming'), consts.styles.mr_button);
     },
     (session, results) => {
 

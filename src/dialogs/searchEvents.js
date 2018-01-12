@@ -3,24 +3,33 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-const api = require('../helpers/apiRequest');
+// const api = require('../helpers/apiRequest');
+const event = require('../helpers/event-helper');
 
 module.exports.byDate = [
     (session, args) => {
         builder.Prompts.time(session, "What is your desired visit date? <br/><br/>eg. (january 1 2018, march 24, 01/02/2018 or 2018-01-23)");
     }, 
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByDate(results.response.resolution.start, (res) => {
-                if(res.data.length != 0) {
-                    var msg = card.events(session, res.data, 'search');
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
-                } else {
-                    session.endConversation('Sorry, there\'s no available event. ☹');
-                } 
-            });
+            // api.searchByDate(results.response.resolution.start, (res) => {
+            //     if(res.data.length != 0) {
+            //         var msg = card.events(session, res.data, 'search');
+            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            //     } else {
+            //         session.endConversation('Sorry, there\'s no available event. ☹');
+            //     } 
+            // });
+            const res = await event.searchByDate(results.response.resolution.start);
+
+            if(res.data.length != 0) {
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            } else {
+                session.endConversation('Sorry, there\'s no available event. ☹');
+            } 
         }
     },
     (session, results) => {
@@ -52,18 +61,26 @@ module.exports.byPax = [
     (session, args) => {
         builder.Prompts.number(session, "For how many guest are you looking for? <br/><br/>eg. (1, 23, 45 etc..)");
     }, 
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByPax(results.response, (res) => {
-                if(res.data.length != 0) {
-                    var msg = card.events(session, res.data, 'search');
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
-                } else {
-                    session.endConversation('Sorry, there\'s no available event. ☹');
-                } 
-            });
+            // api.searchByPax(results.response, (res) => {
+            //     if(res.data.length != 0) {
+            //         var msg = card.events(session, res.data, 'search');
+            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            //     } else {
+            //         session.endConversation('Sorry, there\'s no available event. ☹');
+            //     } 
+            // });
+            const res = await event.searchByPax(results.response);
+
+            if(res.data.length != 0) {
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            } else {
+                session.endConversation('Sorry, there\'s no available event. ☹');
+            } 
         }
     },
     (session, results) => {
@@ -99,14 +116,22 @@ module.exports.byName = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByName(results.response, (res) => {
-                if(res.data.length != 0) {
-                    var msg = card.events(session, res.data);
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-                } else {
-                    session.endConversation('Sorry, there\'s no available event. ☹');
-                } 
-            });
+            // api.searchByName(results.response, (res) => {
+            //     if(res.data.length != 0) {
+            //         var msg = card.events(session, res.data);
+            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
+            //     } else {
+            //         session.endConversation('Sorry, there\'s no available event. ☹');
+            //     } 
+            // });
+            const res = await event.searchByName(results.response);
+
+            if(res.data.length != 0) {
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            } else {
+                session.endConversation('Sorry, there\'s no available event. ☹');
+            } 
         }
     },
     (session, results) => {
@@ -138,19 +163,27 @@ module.exports.byLocation = [
     (session, args) => {
         builder.Prompts.text(session, "Where is your preferred location? <br/><br/>eg. (Iloilo, tagaytay, batangas etc...)");
     }, 
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByLocation(results.response, (res) => {
-                console.log(res)
-                if(res.data.length != 0) {
-                    var msg = card.events(session, res.data);
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-                } else {
-                    session.endConversation('Sorry, there\'s no available event. ☹');
-                } 
-            });
+            // api.searchByLocation(results.response, (res) => {
+            //     console.log(res)
+            //     if(res.data.length != 0) {
+            //         var msg = card.events(session, res.data);
+            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
+            //     } else {
+            //         session.endConversation('Sorry, there\'s no available event. ☹');
+            //     } 
+            // });
+            const res = await event.searchByLocation(results.response);
+
+            if(res.data.length != 0) {
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            } else {
+                session.endConversation('Sorry, there\'s no available event. ☹');
+            } 
         }
     },
     (session, results) => {
@@ -186,15 +219,24 @@ module.exports.byBudget = [
         if(!results.response){
             session.replaceDialog('/');
         } else {
-            api.searchByBudget(results.response, (res) => {
-                console.log(res)
-                if(res.data.length != 0) {
-                    var msg = card.events(session, res.data);
-                    builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
-                } else {
-                    session.endConversation('Sorry, there\'s no available event. ☹');
-                } 
-            });
+            // api.searchByBudget(results.response, (res) => {
+            //     console.log(res)
+            //     if(res.data.length != 0) {
+            //         var msg = card.events(session, res.data);
+            //         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
+            //     } else {
+            //         session.endConversation('Sorry, there\'s no available event. ☹');
+            //     } 
+            // });
+            const res = await event.searchByLocation(results.response);
+
+            if(res.data.length != 0) {
+                var msg = card.events(session, res.data, 'search');
+                builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
+            } else {
+                session.endConversation('Sorry, there\'s no available event. ☹');
+            } 
+            
         }
     },
     (session, results) => {
