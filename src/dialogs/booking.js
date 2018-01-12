@@ -10,7 +10,7 @@ module.exports = [
     async(session, args, next) => {
         const res1 = await event.availability(args.event_id);
         const res2 = await event.eventById(args.event_id);
-        console.log(res2.data[0].client)
+
         session.conversationData.body = {}
         session.conversationData.body.event = args.event_id; // Get event id
         session.conversationData.body.client = res2.data[0].client; // Get client id
@@ -55,14 +55,19 @@ module.exports = [
             session.conversationData = {}
             session.replaceDialog('/')
         } else if(results.response.entity == choices[0]) {
-            const res = await event.createBooking(session.conversationData.body);
-            console.log(res)
-            session.endConversation(`You are now successfully booked for ${res.number_of_pax} for this package. this is your booking reference no. ${res.booking_refno} However, this slot is not yet reserved to you until you settle required down payment amounting ${res.number_of_pax * res.total_dp} 
-            <br/>BDO\ntest\n12345
-            <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired.
-            See you soon buddy 🙂
+            try {
+                const res = await event.createBooking(session.conversationData.body);
+
+                session.endConversation(`You are now successfully booked for ${res.number_of_pax} for this package. this is your booking reference no. ${res.booking_refno} However, this slot is not yet reserved to you until you settle required down payment amounting ${res.number_of_pax * res.total_dp} 
+                <br/><br/>BDO\ntest\n12345
+                <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired.
+                See you soon buddy 🙂
             `);
             session.conversationData = {}
+            } catch(err) {
+                session.endConversation(err.message + ' :(');
+                session.conversationData = {}
+            }
         } else {
             session.conversationData = {}
             session.replaceDialog('/Menu', {reprompt: true})

@@ -189,7 +189,7 @@ async(body) => {
         })
         .catch(err => {
             console.log(err);
-            reject(err);
+            reject(err.data);
         });
     });
 }
