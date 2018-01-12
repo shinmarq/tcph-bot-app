@@ -18,7 +18,7 @@ module.exports.popularEvents = [
 
         // builder.Prompts.choice(session, msg, card.choices(consts.cards.sample_event), consts.styles.mr_button);
         const res = await event.popularEvents();
-        console.log(res)
+
         var msg = card.events(session, res.data);
         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
     },
@@ -145,17 +145,23 @@ module.exports.searchEvents = [
 ]
 
 module.exports.showInclusions = [
-    (session, args) => {
-        api.eventById(args.event_id, (res) => {
-            session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
-        });
+    async(session, args) => {
+        // api.eventById(args.event_id, (res) => {
+        //     session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
+        // });
+
+        const res = await event.eventById(args.event_id);
+        session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
     }
 ]
 
 module.exports.showAvailability = [
-    (session, args) => {
-        api.availability(args.event_id, (res) => {
-            session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
-        });
+    async(session, args) => {
+        // api.availability(args.event_id, (res) => {
+        //     session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
+        // });
+
+        const res = await event.availability(args.event_id);
+        session.endConversation(format('Here\'s the available dates and slots for this package: <br/><br/>{0}', card.availabilityDetails(res.data)));
     }
 ]
