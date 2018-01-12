@@ -16,13 +16,15 @@ exports.prompts = {
         'Ugh.... I\'m confused sorry. 🙄😅'
     ],
     introduction: 'Hi {0}! Welcome to TravelCon PH! My name is Champ, your travel companion! \nTogether, let\'s plan your next vacation ✈.',
-    Menu: 'Select from these awesome options.'
+    Menu: 'Select from these awesome options.',
+    reprompt_menu: 'Okay {0} check other events you might be interested. :)'
 };
 
 module.exports.choices = {
     confirm: ['Yes', 'No'],
     start: ['Let\'s start!'],
-    search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location', '🔎 By Budget']
+    search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location', '🔎 By Budget'],
+    terms: ['I Agree 👍', 'Cancel']
 };
 
 module.exports.cards = {

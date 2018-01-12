@@ -6,15 +6,26 @@ const card = require('../helpers/cardBuilder');
 const fb = require('../helpers/fb-helper');
 
 module.exports = [
-    async(session) => {
-        const res = await fb.userProfile(session.message.user.id, 'first_name');
+    async(session, args) => {
+        if(args && args.reprompt){ 
+            const res = await fb.userProfile(session.message.user.id, 'first_name');
 
-        var cardName = card.getName(consts.cards.main_menu);
-        var msg = card(session, consts.cards.main_menu, cardName);
+            var cardName = card.getName(consts.cards.main_menu);
+            var msg = card(session, consts.cards.main_menu, cardName);
 
-        session.send(format(consts.prompts.introduction, res.first_name));
-        session.send(consts.prompts.Menu);
-        builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+            session.send(format(consts.prompts.reprompt_menu, res.first_name));
+            builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+        } else {
+            const res = await fb.userProfile(session.message.user.id, 'first_name');
+
+            var cardName = card.getName(consts.cards.main_menu);
+            var msg = card(session, consts.cards.main_menu, cardName);
+
+            session.send(format(consts.prompts.introduction, res.first_name));
+            session.send(consts.prompts.Menu);
+            builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
+        }
+        
     },
     (session, results) => {
         var choices = card.choices(consts.cards.main_menu);

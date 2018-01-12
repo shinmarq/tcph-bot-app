@@ -29,19 +29,37 @@ module.exports = [
         session.send('Alright got it!');
         builder.Prompts.number(session, 'Please enter your contact number');
     },
-    async(session, results) => {
-        session.conversationData.body.contact_number = results.response; // Get contact number
-        session.conversationData.body.fb_id = session.message.user.id; // Get fb id
-
+    (session, results) => {
         const res = await fb.userProfile(session.message.user.id, 'first_name,last_name');
 
+        session.conversationData.body.contact_number = results.response; // Get contact number
+        session.conversationData.body.fb_id = session.message.user.id; // Get fb id
         session.conversationData.body.lead_guest = {
             firstname: res.first_name,
             lastname: res.last_name
         } // Get lead guest dtl
+
+        console.log(session.conversationData.body);
+
+        session.send('Here\'s the summary of your booking details. <br/>');
+        builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
+    },
+    async(session, results) => {
+        var choices = consts.choices.terms;
+
+        if(!results){
+            session.conversationData = {}
+            session.replaceDialog('/')
+        } else if(results.response.entity == choices[0]) {
+            await event.createBooking(session.conversationData.body);
+            session.conversationData = {}
+            session.send('Cool thanks!');
+            session.endConversation('Your booking is ready but you are not yet reserved for the slots \nplease settle downpayment Amounting: P{0} \n before 24hrs to these accounts');
+        } else {
+            session.conversationData = {}
+            session.replaceDialog('/Menu', {reprompt: true})
+        }
+
         
-        await event.createBooking(session.conversationData.body);
-        session.send('Cool thanks!');
-        session.endConversation('Your booking is ready but you are not yet reserved for the slots \nplease settle downpayment Amounting: P{0} \n before 24hrs to these accounts');
     }
 ]
