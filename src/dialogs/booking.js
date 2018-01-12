@@ -59,10 +59,10 @@ module.exports = [
                 const res = await event.createBooking(session.conversationData.body);
 
                 session.endConversation(`You are now successfully booked for ${res.number_of_pax} for this package. this is your booking reference no. ${res.booking_refno} However, this slot is not yet reserved to you until you settle required down payment amounting ${res.number_of_pax * res.total_dp} 
-                <br/><br/>BDO\ntest\n12345
-                <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired.
-                See you soon buddy 🙂
-            `);
+                                        <br/><br/>BDO\ntest\n12345
+                                        <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired.
+                                        See you soon buddy 🙂
+                                        `);
             session.conversationData = {}
             } catch(err) {
                 session.endConversation(err.message + ' :(');
