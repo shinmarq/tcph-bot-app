@@ -40,11 +40,11 @@ module.exports = [
             lastname: res1.last_name
         } // Get lead guest dtl
 
-        session.send(`Here's the summary of your booking details. <br/><br/> 
-                        location: ${res2.location}
+        session.send(`Here's the summary of your booking details.  
+                        <br/><br/>location: ${res2.data[0].location}
                         \nNumber of Pax${session.conversationData.body.number_of_pax}
                         \nContact #: ${session.conversationData.body.contact_number}
-                        \nPer Head: ${parseInt(res2.reservation_amount) * session.conversationData.body.number_of_pax}
+                        \nPer Head: ${parseInt(res2.data[0].reservation_amount) * session.conversationData.body.number_of_pax}
                         \nLead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
         builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
     },
