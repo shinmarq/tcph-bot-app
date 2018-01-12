@@ -1,0 +1,6 @@
+/**CHATBOTPH */
+1. Copy folder name "chatbot-template-101817"
+2. Paste and rename
+3. npm init
+4. npm install botbuilder restify string-format request --save
+5. "start": "node app" (package.json)
