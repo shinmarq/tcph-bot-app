@@ -5,6 +5,7 @@ const fb = require('../helpers/fb-helper')
 
 module.exports = [
     (session) => {
+        session.send(session.message.text);
         //Check if NLP present in sourceEvent
         // let entities = ('nlp' in session.message.sourceEvent.message) ? session.message.sourceEvent.message.nlp.entities : undefined;
         
