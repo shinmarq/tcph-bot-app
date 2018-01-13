@@ -144,7 +144,7 @@ module.exports.byLocation = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByLocation(results.response);
-            console.log(res)
+            
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
