@@ -18,6 +18,8 @@ module.exports.byDate = [
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
+
+                session.send('Here\'s what I found. 👌');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -61,6 +63,8 @@ module.exports.byPax = [
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
+
+                session.send('Here\'s what I found. 👌');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -104,6 +108,8 @@ module.exports.byName = [
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
+
+                session.send('Here\'s what I found. 👌');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -147,6 +153,8 @@ module.exports.byLocation = [
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
+
+                session.send('Here\'s what I found. 👌');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -190,6 +198,8 @@ module.exports.byBudget = [
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
+
+                session.send('Here\'s what I found. 👌');
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
