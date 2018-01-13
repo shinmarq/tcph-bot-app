@@ -47,3 +47,26 @@ module.exports = [
 const randomReplies = (replies) => {
     return replies[Math.floor(Math.random() * replies.length)];
 }
+
+const actionDialog = (session, message) => {
+    let str = message;
+
+    if(str.include('AV:') || str.include('IN:') || str.include('BN:')) {
+        var split = message.split(':');
+
+        switch(split[0]) {
+            case 'IN':
+                session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
+            break;
+
+            case 'AV':
+                session.replaceDialog('/Events/Availability', { event_id: split[1] });
+            break;
+            
+            default:
+                session.replaceDialog('/Booking', { event_id: split[1] });
+        }
+    } else {
+        return false;
+    }
+}
