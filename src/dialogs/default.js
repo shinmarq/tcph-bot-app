@@ -4,8 +4,8 @@ const consts = require('../config/consts')
 const fb = require('../helpers/fb-helper')
 
 module.exports = [
-    (session) => {
-        actionDialog(session, session.message.text);
+    (session, args, next) => {
+        actionDialog(session, session.message.text, next);
         //Check if NLP present in sourceEvent
         // let entities = ('nlp' in session.message.sourceEvent.message) ? session.message.sourceEvent.message.nlp.entities : undefined;
         
@@ -67,6 +67,6 @@ const actionDialog = (session, message) => {
                 session.replaceDialog('/Booking', { event_id: split[1] });
         }
     } else {
-        return;
+        next();
     }
 }
