@@ -3,7 +3,7 @@ const format = require('string-format');
 
 const consts = require('../config/consts');
 const card = require('../helpers/cardBuilder');
-// const api = require('../helpers/apiRequest');
+const fb = require('../helpers/fb-helper');
 const event = require('../helpers/event-helper');
 
 module.exports.byDate = [
@@ -15,11 +15,12 @@ module.exports.byDate = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByDate(results.response.resolution.start);
+            const res2 = await fb.userProfile(session.message.user.id, 'first_name');
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
 
-                session.send('Here\'s what I found. 👌');
+                session.send(format('{0}, here\'s what I found. 👌', res2.first_name));
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -60,11 +61,12 @@ module.exports.byPax = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByPax(results.response);
+            const res2 = await fb.userProfile(session.message.user.id, 'first_name');
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data, 'search');
 
-                session.send('Here\'s what I found. 👌');
+                session.send(format('{0}, here\'s what I found. 👌', res2.first_name));
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data, 'search'), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -105,11 +107,12 @@ module.exports.byName = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByName(results.response);
+            const res2 = await fb.userProfile(session.message.user.id, 'first_name');
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
 
-                session.send('Here\'s what I found. 👌');
+                session.send(format('{0}, here\'s what I found. 👌', res2.first_name));
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
@@ -150,6 +153,7 @@ module.exports.byLocation = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByLocation(results.response);
+            const res2 = await fb.userProfile(session.message.user.id, 'first_name');
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
@@ -195,11 +199,12 @@ module.exports.byBudget = [
             session.replaceDialog('/');
         } else {
             const res = await event.searchByBudget(results.response);
+            const res2 = await fb.userProfile(session.message.user.id, 'first_name');
 
             if(res.data.length != 0) {
                 var msg = card.events(session, res.data);
 
-                session.send('Here\'s what I found. 👌');
+                session.send(format('{0}, here\'s what I found. 👌', res2.first_name));
                 builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
             } else {
                 session.endConversation('Sorry, there\'s no available event. ☹');
