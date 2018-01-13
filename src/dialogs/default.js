@@ -67,6 +67,6 @@ const actionDialog = (session, message) => {
                 session.replaceDialog('/Booking', { event_id: split[1] });
         }
     } else {
-        return false;
+        return;
     }
 }
