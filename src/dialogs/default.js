@@ -51,7 +51,7 @@ const randomReplies = (replies) => {
 const actionDialog = (session, message) => {
     let str = message;
 
-    if(str.include('AV:') || str.includes('IN:') || str.include('BN:')) {
+    if(str.includes('AV:') || str.includes('IN:') || str.includes('BN:')) {
         var split = message.split(':');
 
         switch(split[0]) {
