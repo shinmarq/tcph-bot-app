@@ -82,6 +82,7 @@ module.exports.events =
     let item = [];
     if(filter === undefined || filter == ''){
         events.forEach(event => {
+            console.log(event_title)
             item.push(new builder.HeroCard(session)
             .title(event.event_title)
             .text(event.description)
