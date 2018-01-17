@@ -43,7 +43,7 @@ module.exports = [
         session.send(`Here's the summary of your booking.  
                         <br/><br/>Tour: ${res2.data[0].event_title}
                         \nTarget Date: Shin kunin mo ung target date                        
-                        \nNumber of Pax${session.conversationData.body.number_of_pax}
+                        \nNumber of Pax: ${session.conversationData.body.number_of_pax}
                         \nContact #: ${session.conversationData.body.contact_number}
                         \nDamage per head: ${parseInt(res2.data[0].rate)} :)
                         \nDown payment per head: ${parseInt(res2.data[0].reservation_amount)} :)
