@@ -99,7 +99,7 @@ module.exports.checkRefNo = [
                     fb.sendMessage(id, format(`Hi admin, ${session.message.user.name} has paid the down payment please check and validate Thank you! this is the ref #:${results.response}`));
                 });
             } else {
-                session.replaceDialog('/ReferenceNo', {repromt: true});
+                session.replaceDialog('/ReferenceNo', {reprompt: true});
             }
 
             
