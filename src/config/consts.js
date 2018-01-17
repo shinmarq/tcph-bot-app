@@ -201,4 +201,8 @@ module.exports.bot = [
         dialog_id: '/Search/ByBudget',
         dialog: dialogs.searchEvents.byBudget
     },
+    {
+        dialog_id: '/ReferenceNo',
+        dialog: dialogs.booking.checkRefNo
+    },
 ]

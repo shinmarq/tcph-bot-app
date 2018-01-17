@@ -87,11 +87,11 @@ module.exports.checkRefNo = [
         } else {
             //Validate reference number here then send to admins!
             session.send(results.response);
-            
+
             // let ids = consts.adminIds;
 
             // ids.forEach(id => {
-            //     fb.sendMessage(id, '');
+            //     fb.sendMessage(id, format('Hi admin, {0} has paid the down payment please check and validate Thank you!', session.message.user.name));
             // })
         }
     }

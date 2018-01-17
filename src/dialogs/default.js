@@ -70,9 +70,9 @@ module.exports = [
         if(!results.response){
             session.replaceDialog('/');
         } else if(results.response.entity == choices[0]){
-            console.log(results.response.entity);
+            session.replaceDialog('/ReferenceNo');
         } else {
-            console.log(results.response.entity);
+            session.endConversation('Okay please send only image of your receipt of down payment. Thank you have a nice day! :)');
         }
     }
 ]
