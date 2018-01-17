@@ -98,6 +98,8 @@ module.exports.checkRefNo = [
                 ids.forEach(id => {
                     fb.sendMessage(id, format(`Hi admin, ${session.message.user.name} has paid the down payment please check and validate Thank you! this is the ref #:${results.response}`));
                 });
+
+                session.endConversation('Thank you! you will be booked and reserved to this event once TravelCon admin validated your down payment. :)');
             } else {
                 session.replaceDialog('/ReferenceNo', {reprompt: true});
             }
