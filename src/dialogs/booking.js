@@ -96,8 +96,9 @@ module.exports.checkRefNo = [
                 let ids = consts.adminIds;
 
                 ids.forEach(id => {
-                    fb.sendMessage(id, format('Hi admin, {0} has paid the down payment please check and validate Thank you! <br/><br/>this is the ref #:{1}', session.message.user.name, results.response));
-                })
+                    fb.sendMessage(id, format(`Hi admin, ${session.message.user.name} has paid the down payment please check and validate Thank you! 
+                                            <br/><br/>this is the ref #:${results.response}`));
+                });
             } else {
                 session.replaceDialog('/ReferenceNo', {repromt: true});
             }
