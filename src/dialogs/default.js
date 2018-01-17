@@ -1,17 +1,19 @@
 const builder = require('botbuilder');
+const format = require('string-format');
 
 const consts = require('../config/consts')
 const fb = require('../helpers/fb-helper')
 
 module.exports = [
-    (session) => {
-        
+    async(session) => {
+        const res = await fb.userProfile(session.message.user.id, 'first_name');
         var msg = session.message;
+        
         if (msg.attachments && msg.attachments.length > 0) {
          // Echo back attachment
          var attachment = msg.attachments[0];
             session.send({
-                text: "You sent:",
+                text: format('{0}, you\'ve sent an image/attachement! :)', res.first_name),
                 attachments: [
                     {
                         contentType: attachment.contentType,
@@ -20,6 +22,8 @@ module.exports = [
                     }
                 ]
             });
+            builder.Prompts.choice(session, 'Is this a receipt of your down payment? :)', consts.choices.confirm);
+
         } else {
             // Echo back users text
             // session.send("You said: %s", session.message.text);
@@ -58,6 +62,17 @@ module.exports = [
                 
         //     });
         // }
+    },
+    (session, results) => {
+        var choices = consts.choices.confirm;
+
+        if(!results.response){
+            session.replaceDialog('/');
+        } else if(results.response.entity == choices[0]){
+            console.log(results.response.entity);
+        } else {
+            console.log(results.response.entity);
+        }
     }
 ]
 
