@@ -45,8 +45,8 @@ module.exports = [
                         \nTarget Date: Shin kunin mo ung target date                        
                         \nNumber of Pax: ${session.conversationData.body.number_of_pax}
                         \nContact #: ${session.conversationData.body.contact_number}
-                        \nDamage per head: ${parseInt(res2.data[0].rate)} :)
-                        \nDown payment per head: ${parseInt(res2.data[0].reservation_amount)} :)
+                        \nDamage per head: ${parseInt(res2.data[0].rate)} 😅
+                        \nDown payment per head: ${parseInt(res2.data[0].reservation_amount)}
                         \nLead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
         builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
     },
@@ -59,19 +59,18 @@ module.exports = [
         } else if (results.response.entity == choices[0]) {
             try {
                 const res = await event.createBooking(session.conversationData.body);
-
-                session.endConversation(`Awesome! Your booking reference number is: ${res.data.booking_refno} .
-                                        \nNOTES: 
-                                        \n* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.total_dp} 
-                                        \n* This booking will expire in 24 hours 
-                                        \n* Other guests may occupy your slot(s) because reservations are FIRST COME, FIRST SERVE basis.
-                                        \n* Downpayment is NON REFUNDABLE but <b>TRANSFERABLE to participants that will join the same event and schedule.    
-                                        \nPAYMENT OPTIONS:
-                                        <br/><br/>BDO\nJuan Delacrus\n12345
-                                        <br/><br/>BPI\nCardo Dalisay\n12345
+                session.send(`Awesome! Your booking reference number is: ${res.data.booking_refno} .)`);
+                session.send(`Please NOTE that: 
+                                        <br/>* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.total_dp} 
+                                        <br/>* This booking will expire in 24 hours 
+                                        <br/>* Other guests may occupy your slot(s) because reservations are FIRST COME, FIRST SERVE basis.
+                                        <br/>* Downpayment is NON REFUNDABLE but TRANSFERABLE to participants that will join the same event and schedule.    
+                                        \nPAYMENT OPTIONS(DEPOSIT OR ONLINE FUND TRANSFER):
+                                        <br/><br/>BDO<br/>Juan Delacrus<br/>12345
+                                        <br/><br/>BPI<br/>Cardo Dalisay<br/>12345
                                         <br/><br/>
                                         `);
-                session.send('Please send a photo of your proof of transfer/deposit within the next 24 hours.  See you soon buddy 🙂')
+                session.endConversation('Please send a photo of your proof of transfer/deposit within the next 24 hours.  See you soon buddy 😎 😎 ')
                 session.conversationData = {}
             } catch (err) {
                 console.log(err)
