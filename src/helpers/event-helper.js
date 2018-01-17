@@ -193,4 +193,23 @@ async(body) => {
         });
     });
 }
+
+module.exports.referenceNo =
+async(refno) => {
+    var options = {
+        url: format(process.env.EVENT_URI, '/booking/byrefno/' + refno),
+        method: 'GET'
+    }
+
+    return new Promise((resolve, reject) => {
+        request(options)
+        .then(res => {
+            resolve(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+            reject(err);
+        });
+    });
+}
 /**END */

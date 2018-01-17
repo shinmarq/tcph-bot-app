@@ -64,7 +64,6 @@ module.exports = [
         // }
     },
     (session, results) => {
-        console.log(session.message);
         var choices = consts.choices.confirm;
 
         if(!results.response){

@@ -78,21 +78,31 @@ module.exports = [
 ]
 
 module.exports.checkRefNo = [
-    (session) => {
-        builder.Prompts.text(session, 'Got it please enter your Referencce #');
+    (session, args) => {
+        if(args && args.reprompt){
+            builder.Prompts.text(session, 'Invalid Reference number, Please enter again your Reference #');
+        } else {
+            builder.Prompts.text(session, 'Got it please enter your Referencce #');
+        }
     },
-    (session, results) => {
+    async(session, results) => {
         if(!results.response){
             session.replaceDialog('/');
         } else {
             //Validate reference number here then send to admins!
-            session.send(results.response);
+            const res = await event.referenceNo(results.response);
 
-            // let ids = consts.adminIds;
+            if(res.data.length != 0){
+                let ids = consts.adminIds;
 
-            // ids.forEach(id => {
-            //     fb.sendMessage(id, format('Hi admin, {0} has paid the down payment please check and validate Thank you!', session.message.user.name));
-            // })
+                ids.forEach(id => {
+                    fb.sendMessage(id, format('Hi admin, {0} has paid the down payment please check and validate Thank you! <br/><br/>this is the ref #:{1}', session.message.user.name, results.response));
+                })
+            } else {
+                session.replaceDialog('/ReferenceNo', {repromt: true});
+            }
+
+            
         }
     }
 ]
