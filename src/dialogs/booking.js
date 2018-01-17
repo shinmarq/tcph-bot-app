@@ -76,3 +76,23 @@ module.exports = [
         
     }
 ]
+
+module.exports.checkRefNo = [
+    (session) => {
+        builder.Prompts.text(session, 'Got it please enter your Referencce #');
+    },
+    (session, results) => {
+        if(!results.response){
+            session.replaceDialog('/');
+        } else {
+            //Validate reference number here then send to admins!
+            session.send(results.response);
+            
+            // let ids = consts.adminIds;
+
+            // ids.forEach(id => {
+            //     fb.sendMessage(id, '');
+            // })
+        }
+    }
+]

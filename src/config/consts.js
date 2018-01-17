@@ -109,6 +109,8 @@ module.exports.styles = {
     mr_none: {listStyle: builder.ListStyle.none, maxRetries: 0}
 }
 
+module.exports.adminIds = [];
+
 module.exports.persistentMenu = {
     persistent_menu: [
         {

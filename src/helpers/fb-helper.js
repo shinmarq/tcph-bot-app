@@ -1,4 +1,5 @@
 const request = require('axios');
+const fb = require('fb-messenger'); 
 const format = require('string-format');
 
 /**FB USER-PROFILE API */
@@ -55,3 +56,10 @@ module.exports.persistentMenu =
     })
 }
 /**END */
+
+module.exports.sendMessage = 
+(id, message) => {
+    var messenger = new fb(process.env.ACCESS_TOKEN);
+    
+    messenger.sendTextMessage(id, message)
+}
