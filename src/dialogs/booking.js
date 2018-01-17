@@ -61,15 +61,13 @@ module.exports = [
                 const res = await event.createBooking(session.conversationData.body);
                 session.send(`Awesome! Your booking reference number is: ${res.data.booking_refno} .)`);
                 session.send(`Please NOTE that: 
-                                        <br/>* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.total_dp} 
-                                        <br/>* This booking will expire in 24 hours 
-                                        <br/>* Other guests may occupy your slot(s) because reservations are FIRST COME, FIRST SERVE basis.
-                                        <br/>* Downpayment is NON REFUNDABLE but TRANSFERABLE to participants that will join the same event and schedule.    
+                                        \n* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.total_dp} 
+                                        \n* This booking will expire in 24 hours 
+                                        \n* Other guests may occupy your slot(s) because reservations are FIRST COME, FIRST SERVE basis.
+                                        \n* Downpayment is NON REFUNDABLE but TRANSFERABLE to participants that will join the same event and schedule.    
                                         \nPAYMENT OPTIONS(DEPOSIT OR ONLINE FUND TRANSFER):
                                         <br/><br/>BDO<br/>Juan Delacrus<br/>12345
-                                        <br/><br/>BPI<br/>Cardo Dalisay<br/>12345
-                                        <br/><br/>
-                                        `);
+                                        <br/><br/>BPI<br/>Cardo Dalisay<br/>12345`);
                 session.endConversation('Please send a photo of your proof of transfer/deposit within the next 24 hours.  See you soon buddy 😎 😎 ')
                 session.conversationData = {}
             } catch (err) {
