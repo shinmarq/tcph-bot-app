@@ -7,7 +7,7 @@ const fb = require('../helpers/fb-helper');
 const event = require('../helpers/event-helper');
 
 module.exports = [
-    async(session, args, next) => {
+    async (session, args, next) => {
         const res1 = await event.availability(args.event_id);
         const res2 = await event.eventById(args.event_id);
 
@@ -15,8 +15,8 @@ module.exports = [
         session.conversationData.body.event = args.event_id; // Get event id
         session.conversationData.body.client = res2.data[0].client; // Get client id
         session.conversationData.dates = card.idChoices(res1.data) // get event day name and id
-        builder.Prompts.choice(session, 'What\'s your preferred date? 📅', card.idChoices(res1.data), consts.styles.mr_button);
-  
+        builder.Prompts.choice(session, 'What\'s your preferred visit date? 📅', card.idChoices(res1.data), consts.styles.mr_button);
+
     },
     (session, results) => {
         var date = session.conversationData.dates[results.response.entity];
@@ -29,7 +29,7 @@ module.exports = [
         session.send('Alright got it!');
         builder.Prompts.number(session, 'Please enter your contact number');
     },
-    async(session, results) => {
+    async (session, results) => {
         const res1 = await fb.userProfile(session.message.user.id, 'first_name,last_name');
         const res2 = await event.eventById(session.conversationData.body.event);
 
@@ -40,69 +40,78 @@ module.exports = [
             lastname: res1.last_name
         } // Get lead guest dtl
 
-        session.send(`Here's the summary of your booking details.  
-                        <br/><br/>location: ${res2.data[0].location}
+        session.send(`Here's the summary of your booking.  
+                        <br/><br/>Tour: ${res2.data[0].event_title}
+                        \nTarget Date: Shin kunin mo ung target date                        
                         \nNumber of Pax${session.conversationData.body.number_of_pax}
                         \nContact #: ${session.conversationData.body.contact_number}
-                        \nPer Head: ${parseInt(res2.data[0].reservation_amount) * session.conversationData.body.number_of_pax}
+                        \nDamage per head: ${parseInt(res2.data[0].rate)} :)
+                        \nDown payment per head: ${parseInt(res2.data[0].reservation_amount)} :)
                         \nLead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
         builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
     },
-    async(session, results) => {
+    async (session, results) => {
         var choices = consts.choices.terms;
 
-        if(!results.response){
+        if (!results.response) {
             session.conversationData = {}
             session.replaceDialog('/')
-        } else if(results.response.entity == choices[0]) {
+        } else if (results.response.entity == choices[0]) {
             try {
                 const res = await event.createBooking(session.conversationData.body);
 
-                session.endConversation(`You are now successfully booked for ${res.data.number_of_pax} for this package. this is your booking reference no. ${res.data.booking_refno} However, this slot is not yet reserved to you until you settle required down payment amounting ${res.data.number_of_pax * res.data.total_dp} 
-                                        <br/><br/>BDO\ntest\n12345
-                                        <br/><br/>Please send a photo of your receipt after the transfer before 24 hours or you booking will be expired. See you soon buddy 🙂
+                session.endConversation(`Awesome! Your booking reference number is:<b> ${res.data.booking_refno} </b>.
+                                        \nNOTES: 
+                                        \n* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.number_of_pax * res.data.total_dp} 
+                                        \n* This booking will expire in 24 hours 
+                                        \n* Other guests may occupy your slot(s) because reservations are FIRST COME, FIRST SERVE basis.
+                                        \n* Downpayment is <b>NON REFUNDABLE</b> but <b>TRANSFERABLE</b> to participants that will join the same event and schedule.    
+                                        \nPAYMENT OPTIONS:
+                                        <br/><br/>BDO\nJuan Delacrus\n12345
+                                        <br/><br/>BPI\nCardo Dalisay\n12345
+                                        <br/><br/>Please send a photo of your <i>proof of transfer/deposit</i> within the next 24 hours.  See you soon buddy 🙂
                                         `);
                 session.conversationData = {}
-            } catch(err) {
+            } catch (err) {
                 console.log(err)
                 session.endConversation(err.message + ' :(');
                 session.conversationData = {}
             }
         } else {
             session.conversationData = {}
-            session.replaceDialog('/Menu', {reprompt: true})
+            session.replaceDialog('/Menu', { reprompt: true })
         }
 
-        
+
     }
 ]
 
 module.exports.checkRefNo = [
     (session, args) => {
-        if(args && args.reprompt){
-            builder.Prompts.text(session, 'Invalid Reference number, Please enter again your Reference #');
+        if (args && args.reprompt) {
+            builder.Prompts.text(session, 'Invalid reference number, Please enter again your booking reference #');
         } else {
-            builder.Prompts.text(session, 'Got it please enter your Reference #');
+            builder.Prompts.text(session, 'Nice! Please enter your booking reference #');
         }
     },
-    async(session, results) => {
-        if(!results.response){
+    async (session, results) => {
+        if (!results.response) {
             session.replaceDialog('/');
         } else {
             //Validate reference number here then send to admins!
             const res = await event.referenceNo(results.response);
 
-            if(res.data.length != 0){
+            if (res.data.length != 0) {
                 let ids = consts.adminIds;
 
                 ids.forEach(id => {
                     fb.sendMessage(id, format(`Hi admin, ${session.message.user.name} has paid the down payment please check and validate Thank you! this is the ref #:${results.response}`));
                 });
             } else {
-                session.replaceDialog('/ReferenceNo', {reprompt: true});
+                session.replaceDialog('/ReferenceNo', { reprompt: true });
             }
 
-            
+
         }
     }
 ]
