@@ -7,7 +7,9 @@ const fb = require('../helpers/fb-helper');
 
 module.exports = [
     async(session, args) => {
-        if(args && args.reprompt){ 
+        if(args && args.reprompt){
+            const test = await fb.getProfile(session.message.user.id); 
+            console.log(test);
             const res = await fb.userProfile(session.message.user.id, 'first_name');
 
             var cardName = card.getName(consts.cards.main_menu);

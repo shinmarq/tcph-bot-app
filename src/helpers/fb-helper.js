@@ -63,3 +63,16 @@ module.exports.sendMessage =
     
     messenger.sendTextMessage(id, message)
 }
+
+module.exports.getProfile =
+async(id) => {
+    var messenger = new fb(process.env.ACCESS_TOKEN);
+
+    return new Promise((ressolve, reject) => {
+        messenger.getProfile(id, (res) => {
+            console.log(res);
+            resolve(res);
+        });
+    });
+    
+}
