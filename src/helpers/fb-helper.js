@@ -68,7 +68,7 @@ module.exports.getProfile =
 async(id) => {
     var messenger = new fb(process.env.ACCESS_TOKEN);
 
-    return new Promise((ressolve, reject) => {
+    return new Promise((resolve, reject) => {
         messenger.getProfile(id, (res) => {
             console.log(res);
             resolve(res);
