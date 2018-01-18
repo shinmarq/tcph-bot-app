@@ -2,6 +2,8 @@ const builder = require('botbuilder');
 const restify = require('restify');
 
 const routes = require('./src/routes/dialogRoutes');
+
+const config = require('./src/config/config');
 const consts = require('./src/config/consts');
 // require('./src/helpers/fb-helper').getStarted('Get_Started');
 // require('./src/helpers/fb-helper').persistentMenu(consts.persistentMenu);
@@ -61,11 +63,15 @@ routes(bot, consts.bot);
 // Server Setup
 //=========================================================
 
-const server = restify.createServer();
+const server = restify.createServer({
+    name: config.name,
+    version: config.version
+});
 
 /**Endpoint for incoming messages*/
 server.post('/api/messages', connector.listen());
 
-server.listen(process.env.PORT || process.env.port || consts.PORT, () => {
-    console.log('Restify to port', server.url);
+server.listen(config.port, () => {
+    console.log(`Server started: ${server.name}@${config.version}`);
+    console.log(`Listening on port: ${config.port}`)
 });

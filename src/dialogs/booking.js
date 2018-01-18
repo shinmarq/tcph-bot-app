@@ -96,7 +96,6 @@ module.exports.checkRefNo = [
         if (!results.response) {
             session.replaceDialog('/');
         } else {
-            //Validate reference number here then send to admins!
             const res = await event.referenceNo(results.response);
 
             if (res.data.length != 0) {
