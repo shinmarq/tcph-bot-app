@@ -59,7 +59,7 @@ module.exports = [
         } else if (results.response.entity == choices[0]) {
             try {
                 const res = await event.createBooking(session.conversationData.body);
-                session.send(`Awesome! Your booking reference number is: ${res.data.booking_refno} .)`);
+                session.send(`Awesome! Your booking reference number is: ${res.data.booking_refno}`);
                 session.send(`Please NOTE that: 
                                         \n* Your slot(s) will only be reserved upon settling the required down payment amounting PHP ${res.data.total_dp} 
                                         \n* This booking will expire in 24 hours 
