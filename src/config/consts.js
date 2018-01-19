@@ -128,6 +128,12 @@ module.exports.persistentMenu = {
                     payload: "Menu"
                 },
                 {
+                    title: "My Credits",
+                    type: "web_url",                
+                    url: "http://www.samplewebview.ph/",
+                    webview_height_ratio: "compact"
+                },
+                {
                     title: "Powered By Werpa Rangers 🤖",
                     type: "web_url",
                     url: "http://www.chatbot.ph/",
