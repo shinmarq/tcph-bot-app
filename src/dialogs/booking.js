@@ -18,7 +18,6 @@ module.exports = [
         session.conversationData.dates = card.idChoices(res1.data) // get event day name and id
 
         if(res1.data[0].available_slots != 0) {
-            session.send(format('{0} more slots available.', res1.data[0].available_slots));
             builder.Prompts.choice(session, 'What\'s your preferred visit date? 📅', card.idChoices(res1.data), consts.styles.mr_button);
         } else {
             session.endConversation('SORRY NO SLOTS AVAILABLE.');
@@ -30,6 +29,7 @@ module.exports = [
         var date = session.conversationData.dates[results.response.entity];
         
         session.conversationData.body.event_schedule = date.event_id // Get event schedule id
+        session.send(format('{0} more slots available.', session.conversationData.slots));
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
     (session, results) => {
