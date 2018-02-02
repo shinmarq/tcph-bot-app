@@ -33,7 +33,7 @@ module.exports = [
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
     (session, results) => {
-        let slots = session.conversation.slots;
+        let slots = session.conversationData.slots;
         if(results.response <= slots) {
             session.conversationData.body.number_of_pax = results.response; // Get number of pax
             session.send('Alright got it!');
