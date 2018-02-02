@@ -24,6 +24,7 @@ module.exports.choices = {
     confirm: ['Yes', 'No'],
     start: ['Let\'s start!'],
     search_options: ['🔎 By Date', '🔎 By Pax', '🔎 By Event Name', '🔎 By Location', '🔎 By Budget'],
+    confirm_book: ['Confirm ✔', 'Rebook/Edit', 'Cancel'],
     terms: ['I Agree 👍', 'Cancel']
 };
 

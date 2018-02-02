@@ -43,13 +43,28 @@ module.exports = [
 
         session.send(`Here's the summary of your booking.  
                         <br/><br/>Tour: ${res2.data[0].event_title}
-                        \nTarget Date: ${session.conversationData.preferredDate}                        
-                        \nNumber of Pax: ${session.conversationData.body.number_of_pax}
-                        \nContact #: ${session.conversationData.body.contact_number}
-                        \nDamage per head: ${parseInt(res2.data[0].rate)} 😅
-                        \nDown payment per head: ${parseInt(res2.data[0].reservation_amount)}
-                        \nLead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
-        builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
+                        \n1.) Target Date: ${session.conversationData.preferredDate}                        
+                        \n2.) Number of Pax: ${session.conversationData.body.number_of_pax}
+                        \n3.) Contact #: ${session.conversationData.body.contact_number}
+                        \n4.) Damage per head: ${parseInt(res2.data[0].rate)} 😅
+                        \n5.) Down payment per head: ${parseInt(res2.data[0].reservation_amount)}
+                        \n6.) Lead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
+        builder.Prompts.choice(session, 'Confirm your booking details.', consts.choices.confirm_book, consts.styles.mr_button);
+    },
+    (session, results) => {
+        var choices = consts.choices.confirm_book;
+
+        if(!results.response) {
+            session.replaceDialog('/')
+        } else if(results.response.entity == choices[0]) {
+            builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
+        } else if(results.response.entity == choices[1]) {
+            session.conversationData = {}
+            session.replaceDialog('/Menu', { rebook: true, edit: true });
+        } else {
+            session.conversationData = {}
+            session.replaceDialog('/Menu', { reprompt: true });
+        }
     },
     async (session, results) => {
         var choices = consts.choices.terms;
@@ -78,7 +93,7 @@ module.exports = [
             }
         } else {
             session.conversationData = {}
-            session.replaceDialog('/Menu', { reprompt: true })
+            session.replaceDialog('/Menu', { reprompt: true });
         }
 
 

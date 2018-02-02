@@ -12,8 +12,8 @@ module.exports = [
 
             var cardName = card.getName(consts.cards.main_menu);
             var msg = card(session, consts.cards.main_menu, cardName);
-
-            session.send(format(consts.prompts.reprompt_menu, res.first_name));
+            
+            !args.edit ? session.send(format(consts.prompts.reprompt_menu, res.first_name)) : session.send(format('Okay {0}, Please choose again.', res.first_name));
             builder.Prompts.choice(session, msg, card.choices(consts.cards.main_menu), consts.styles.mr_button);
         } else {
             const res = await fb.userProfile(session.message.user.id, 'first_name');
