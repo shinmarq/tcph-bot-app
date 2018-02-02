@@ -40,6 +40,7 @@ module.exports = [
             lastname: res1.last_name
         } // Get lead guest dtl
 
+        console.log(res2.data[0]);
         session.send(`Here's the summary of your booking.  
                         <br/><br/>Tour: ${res2.data[0].event_title}
                         \nTarget Date: Shin kunin mo ung target date                        

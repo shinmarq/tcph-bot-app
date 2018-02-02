@@ -83,7 +83,7 @@ module.exports.events =
     if(filter === undefined || filter == ''){
         events.forEach(event => {
             item.push(new builder.HeroCard(session)
-            .title(event.event_title)
+            .title(event.event_title + ' ' + event.client.agency_name)
             .text(event.description)
             .images([ 
                 builder.CardImage.create(session, event.photo)
@@ -98,7 +98,7 @@ module.exports.events =
         events.forEach(event => {
             console.log(event)
             item.push(new builder.HeroCard(session)
-            .title(event.event.event_title)
+            .title(event.event.event_title + ' ' + event.event.client.agency_name)
             .text(event.event.description)
             .images([ 
                 builder.CardImage.create(session, event.event.photo)
