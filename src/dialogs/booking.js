@@ -60,7 +60,7 @@ module.exports = [
             builder.Prompts.choice(session, 'Terms & Condition', consts.choices.terms, consts.styles.mr_button);
         } else if(results.response.entity == choices[1]) {
             session.conversationData = {}
-            session.replaceDialog('/Menu', { rebook: true, edit: true });
+            session.replaceDialog('/Menu', { reprompt: true, edit: true });
         } else {
             session.conversationData = {}
             session.replaceDialog('/Menu', { reprompt: true });
