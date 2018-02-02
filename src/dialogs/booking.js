@@ -19,8 +19,9 @@ module.exports = [
 
     },
     (session, results) => {
+        session.conversationData.preferredDate = results.response.entity;
         var date = session.conversationData.dates[results.response.entity];
-
+        
         session.conversationData.body.event_schedule = date.event_id // Get event schedule id
         builder.Prompts.number(session, 'How many of you will join this event?');
     },
@@ -40,10 +41,9 @@ module.exports = [
             lastname: res1.last_name
         } // Get lead guest dtl
 
-        console.log(res2.data[0]);
         session.send(`Here's the summary of your booking.  
                         <br/><br/>Tour: ${res2.data[0].event_title}
-                        \nTarget Date: Shin kunin mo ung target date                        
+                        \nTarget Date: ${session.conversationData.preferredDate}                        
                         \nNumber of Pax: ${session.conversationData.body.number_of_pax}
                         \nContact #: ${session.conversationData.body.contact_number}
                         \nDamage per head: ${parseInt(res2.data[0].rate)} 😅
