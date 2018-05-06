@@ -18,7 +18,7 @@ module.exports = [
         session.conversationData.dates = card.idChoices(res1.data) // get event day name and id
 
         if(res1.data[0].available_slots != 0) {
-            builder.Prompts.choice(session, 'What\'s your preferred visit date? 📅', card.idChoices(res1.data), consts.styles.button);
+            builder.Prompts.choice(session, 'What\'s your preferred visit date? 📅', card.idChoices(res1.data));
         } else {
             session.endConversation('SORRY NO SLOTS AVAILABLE.');
         }
