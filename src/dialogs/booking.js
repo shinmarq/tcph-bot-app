@@ -55,12 +55,12 @@ module.exports = [
         } // Get lead guest dtl
 
         session.send(`Here's the summary of your booking.  
-                        <br/><br/>Tour: ${res2.data[0].event_title}
+                        <br/><br/>Tour: ${!res2.data[0] ? res2.data.event_title : res2.data[0].event_title}
                         \n1.) Target Date: ${session.conversationData.preferredDate}                        
                         \n2.) Number of Pax: ${session.conversationData.body.number_of_pax}
                         \n3.) Contact #: ${session.conversationData.body.contact_number}
-                        \n4.) Damage per head: ${parseInt(res2.data[0].rate)} 😅
-                        \n5.) Down payment per head: ${parseInt(res2.data[0].reservation_amount)}
+                        \n4.) Damage per head: ${parseInt(!res2.data[0] ? res2.data.rate : res2.data[0].rate)} 😅
+                        \n5.) Down payment per head: ${parseInt(!res2.data[0] ? res2.data.reservation_amount : res2.data[0].reservation_amount)}
                         \n6.) Lead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
         builder.Prompts.choice(session, 'Confirm your booking details.', consts.choices.confirm_book, consts.styles.mr_button);
     },
