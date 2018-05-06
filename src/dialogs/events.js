@@ -8,7 +8,7 @@ const event = require('../helpers/event-helper');
 module.exports.popularEvents = [
     async(session) => {
         const res = await event.popularEvents();
-        
+        console.log(res)
         var msg = card.events(session, res.data);
         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
     },
