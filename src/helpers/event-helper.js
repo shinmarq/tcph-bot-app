@@ -197,8 +197,11 @@ async(body) => {
 module.exports.referenceNo =
 async(refno) => {
     var options = {
-        url: format(process.env.EVENT_URI, '/booking/byrefno/' + refno),
-        method: 'GET'
+        url: format(process.env.EVENT_URI, '/booking/'),
+        method: 'GET',
+        params: {
+            booking_refno: refno
+        }
     }
 
     return new Promise((resolve, reject) => {
