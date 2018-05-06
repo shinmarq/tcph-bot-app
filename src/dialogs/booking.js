@@ -25,44 +25,59 @@ module.exports = [
         
     },
     (session, results) => {
-        session.conversationData.preferredDate = results.response.entity;
-        var date = session.conversationData.dates[results.response.entity];
-        
-        session.conversationData.body.event_schedule = date.event_id // Get event schedule id
-        session.send(format('{0} more slots available.', session.conversationData.slots));
-        builder.Prompts.number(session, 'How many of you will join this event?');
+        if(!results.response){
+            session.replaceDialog('/')
+        } else {
+            session.conversationData.preferredDate = results.response.entity;
+            var date = session.conversationData.dates[results.response.entity];
+            
+            session.conversationData.body.event_schedule = date.event_id // Get event schedule id
+            session.send(format('{0} more slots available.', session.conversationData.slots));
+            builder.Prompts.number(session, 'How many of you will join this event?');
+        }
     },
     (session, results) => {
-        let slots = session.conversationData.slots;
-        if(results.response <= slots) {
-            session.conversationData.body.number_of_pax = results.response; // Get number of pax
-            session.send('Alright got it!');
-            builder.Prompts.number(session, 'Please enter your contact number');
+
+        if(!results.response){
+            session.replaceDialog('/')
         } else {
-            session.endConversation('Your group exceeds the remaining slots, Would you like to request for open slots?');
+            let slots = session.conversationData.slots;
+            if(results.response <= slots) {
+                session.conversationData.body.number_of_pax = results.response; // Get number of pax
+                session.send('Alright got it!');
+                builder.Prompts.number(session, 'Please enter your contact number');
+            } else {
+                session.endConversation('Your group exceeds the remaining slots, Would you like to request for open slots?');
+            }
         }
         
     },
     async (session, results) => {
-        const res1 = await fb.userProfile(session.message.user.id, 'first_name,last_name');
-        const res2 = await event.eventById(session.conversationData.body.event);
-        console.log(res2)
-        session.conversationData.body.contact_number = results.response; // Get contact number
-        session.conversationData.body.fb_id = session.message.user.id; // Get fb id
-        session.conversationData.body.lead_guest = {
-            firstname: res1.first_name,
-            lastname: res1.last_name
-        } // Get lead guest dtl
 
-        session.send(`Here's the summary of your booking.  
-                        <br/><br/>Tour: ${!res2.data[0] ? res2.data.event_title : res2.data[0].event_title}
-                        \n1.) Target Date: ${session.conversationData.preferredDate}                        
-                        \n2.) Number of Pax: ${session.conversationData.body.number_of_pax}
-                        \n3.) Contact #: ${session.conversationData.body.contact_number}
-                        \n4.) Damage per head: ${parseInt(!res2.data[0] ? res2.data.rate : res2.data[0].rate)} 😅
-                        \n5.) Down payment per head: ${parseInt(!res2.data[0] ? res2.data.reservation_amount : res2.data[0].reservation_amount)}
-                        \n6.) Lead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
-        builder.Prompts.choice(session, 'Confirm your booking details.', consts.choices.confirm_book, consts.styles.mr_button);
+        if(!results.response) {
+            session.replaceDialog('/')
+        } else {
+
+            const res1 = await fb.userProfile(session.message.user.id, 'first_name,last_name');
+            const res2 = await event.eventById(session.conversationData.body.event);
+    
+            session.conversationData.body.contact_number = results.response; // Get contact number
+            session.conversationData.body.fb_id = session.message.user.id; // Get fb id
+            session.conversationData.body.lead_guest = {
+                firstname: res1.first_name,
+                lastname: res1.last_name
+            } // Get lead guest dtl
+    
+            session.send(`Here's the summary of your booking.  
+                            <br/><br/>Tour: ${!res2.data[0] ? res2.data.event_title : res2.data[0].event_title}
+                            \n1.) Target Date: ${session.conversationData.preferredDate}                        
+                            \n2.) Number of Pax: ${session.conversationData.body.number_of_pax}
+                            \n3.) Contact #: ${session.conversationData.body.contact_number}
+                            \n4.) Damage per head: ${parseInt(!res2.data[0] ? res2.data.rate : res2.data[0].rate)} 😅
+                            \n5.) Down payment per head: ${parseInt(!res2.data[0] ? res2.data.reservation_amount : res2.data[0].reservation_amount)}
+                            \n6.) Lead Guest: ${session.conversationData.body.lead_guest.firstname + ' ' + session.conversationData.body.lead_guest.lastname}`);
+            builder.Prompts.choice(session, 'Confirm your booking details.', consts.choices.confirm_book, consts.styles.mr_button);
+        }
     },
     (session, results) => {
         var choices = consts.choices.confirm_book;
@@ -86,7 +101,7 @@ module.exports = [
             session.conversationData = {}
             session.replaceDialog('/')
         } else if (results.response.entity == choices[0]) {
-            try {
+            // try {
                 const res = await event.createBooking(session.conversationData.body);
                 session.send(`Awesome! Your booking reference number is: ${res.data.booking_refno}`);
                 session.send(`Please NOTE that: 
@@ -99,11 +114,11 @@ module.exports = [
                                         <br/><br/>BPI<br/>Cardo Dalisay<br/>12345`);
                 session.endConversation('Please send a photo of your proof of transfer/deposit within the next 24 hours.  See you soon buddy 😎 😎 ')
                 session.conversationData = {}
-            } catch (err) {
-                console.log(err)
-                session.endConversation(err.message + ' :(');
-                session.conversationData = {}
-            }
+            // } catch (err) {
+            //     console.log(err)
+            //     session.endConversation(err.message + ' :(');
+            //     session.conversationData = {}
+            // }
         } else {
             session.conversationData = {}
             session.replaceDialog('/Menu', { reprompt: true });
