@@ -46,7 +46,7 @@ module.exports = [
     async (session, results) => {
         const res1 = await fb.userProfile(session.message.user.id, 'first_name,last_name');
         const res2 = await event.eventById(session.conversationData.body.event);
-
+        console.log(res2)
         session.conversationData.body.contact_number = results.response; // Get contact number
         session.conversationData.body.fb_id = session.message.user.id; // Get fb id
         session.conversationData.body.lead_guest = {
