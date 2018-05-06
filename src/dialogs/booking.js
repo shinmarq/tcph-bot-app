@@ -15,7 +15,7 @@ module.exports = [
         session.conversationData.slots = res1.data[0].available_slots;
         session.conversationData.body = {}
         session.conversationData.body.event = args.event_id; // Get event id
-        session.conversationData.body.client = res2.data[0].client; // Get client id
+        session.conversationData.body.client = res2.data[0] ? res.data.client : res2.data[0].client; // Get client id
         session.conversationData.dates = card.idChoices(res1.data) // get event day name and id
 
         if(res1.data[0].available_slots != 0) {
