@@ -18,7 +18,7 @@ module.exports.popularEvents = [
         } else {
             var choice = results.response.entity;
             var split = choice.split(':');
-            console.log(choice)
+            
             switch(split[0]) {
                 case 'IN':
                     session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
