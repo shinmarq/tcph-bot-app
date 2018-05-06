@@ -8,7 +8,6 @@ const event = require('../helpers/event-helper');
 module.exports.popularEvents = [
     async(session) => {
         const res = await event.popularEvents();
-        console.log(res)
         var msg = card.events(session, res.data);
         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
     },
@@ -18,7 +17,7 @@ module.exports.popularEvents = [
         } else {
             var choice = results.response.entity;
             var split = choice.split(':');
-            
+
             switch(split[0]) {
                 case 'IN':
                     session.replaceDialog('/Events/Inclusions', { event_id: split[1] });
@@ -133,7 +132,6 @@ module.exports.searchEvents = [
 module.exports.showInclusions = [
     async(session, args) => {
         const res = await event.eventById(args.event_id);
-        console.log(res)
         session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data.inclusions));
     }
 ]
