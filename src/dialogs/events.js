@@ -133,7 +133,7 @@ module.exports.searchEvents = [
 module.exports.showInclusions = [
     async(session, args) => {
         const res = await event.eventById(args.event_id);
-        session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data[0].inclusions));
+        session.endConversation(format('These are inclusions on this tour: <br/><br/>{0}', res.data.inclusions));
     }
 ]
 
