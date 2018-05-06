@@ -96,7 +96,7 @@ module.exports.events =
         });
     } else {
         events.forEach(event => {
-            console.log(event)
+            // console.log(event)
             item.push(new builder.HeroCard(session)
             .title(event.event.event_title + ' ' + event.event.client.agency_name)
             .text(event.event.description)
