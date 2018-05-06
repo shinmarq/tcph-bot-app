@@ -25,6 +25,7 @@ module.exports = [
         
     },
     (session, results) => {
+        console.log(results)
         if(!results.response){
             session.replaceDialog('/')
         } else {
