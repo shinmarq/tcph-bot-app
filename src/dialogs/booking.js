@@ -7,7 +7,7 @@ const fb = require('../helpers/fb-helper');
 const event = require('../helpers/event-helper');
 
 module.exports = [
-    async (session, args, next) => {
+    async (session, args) => {
         const res1 = await event.availability(args.event_id);
         const res2 = await event.eventById(args.event_id);
 
