@@ -8,6 +8,7 @@ const event = require('../helpers/event-helper');
 
 module.exports = [
     async (session, args) => {
+        console.log(args)
         const res1 = await event.availability(args.event_id);
         const res2 = await event.eventById(args.event_id);
 
@@ -25,6 +26,7 @@ module.exports = [
         
     },
     (session, results) => {
+        console.log(results)
         if(!results.response){
             session.replaceDialog('/')
         } else {
