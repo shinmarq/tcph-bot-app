@@ -9,6 +9,7 @@ module.exports.popularEvents = [
     async(session) => {
         const res = await event.popularEvents();
         var msg = card.events(session, res.data);
+        console.log(card.eventChoices(res.data))
         builder.Prompts.choice(session, msg, card.eventChoices(res.data), consts.styles.mr_button);
     },
     (session, results) => {

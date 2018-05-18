@@ -16,7 +16,7 @@ module.exports = [
         session.conversationData.body.event = args.event_id; // Get event id
         session.conversationData.body.client = !res2.data[0] ? res2.data.client : res2.data[0].client; // Get client id
         session.conversationData.dates = card.idChoices(res1.data) // get event day name and id
-
+        
         if(res1.data[0].available_slots != 0) {
             builder.Prompts.choice(session, 'What\'s your preferred visit date? 📅', card.idChoices(res1.data), consts.styles.mr_button);
         } else {
@@ -25,6 +25,7 @@ module.exports = [
         
     },
     (session, results) => {
+        console.log(results.response.entity)
         if(!results.response){
             session.replaceDialog('/')
         } else {
