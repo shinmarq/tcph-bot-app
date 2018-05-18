@@ -36,7 +36,7 @@ const bot = new builder.UniversalBot(connector).set('storage', inMemoryStorage);
     },
 });
  */
-bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 1.1, resetCommand: /^reset/i }));
 bot.use(builder.Middleware.sendTyping());
 bot.use({
     botbuilder: (session, next) => {
